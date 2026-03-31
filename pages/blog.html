@@ -3,50 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bintang Ridwan Pribadi</title>
-    <link rel="icon" href="./img/logo.png" type="image/icon type">
-    <!-- #CSS -->
-    <link rel="stylesheet" href="../css/style.css">
-    <!-- #box icon -->
+    <title>Blog | Bintang Ridwan Pribadi</title>
+    <link rel="icon" href="../img/logo.png" type="image/icon type">
 
-    <link rel="stylesheet"
-          href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-    <!--remox icon-->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-</head>
-<body>
 
-<header>
-    <div class="bx bx-menu" id="menu-icon"></div>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+<header id="navbar">
+    <div class="logo">
+      <div class="logo-box">t</div>
+      Agency
+    </div>
+
     <ul class="navlist">
         <li><a href="../index.html">About</a></li>
-        <li><a href="repository.html">Repository</a></li>
+        <li><a href="portofolio.html">Portfolio</a></li>
         <li><a href="certifications.html">Certifications</a></li>
         <li><a href="cv.html">CV</a></li>
-        <li><a href="blog.html">Blog</a></li>
+        <li><a href="blog.html" class="active">Blog</a></li>
     </ul>
 
-    <div class="search-btn" id="search-btn">
-        <i class="ri-search-line"></i>
+    <div class="header-btns">
+        <a href="cv.html" class="h-btn">Download CV</a>
+        <i class="ri-search-line" id="search-btn"></i>
+        <div class="theme-toggle" id="theme-toggle">
+            <i class="ri-moon-line"></i>
+        </div>
+        <div class="bx bx-menu" id="menu-icon"></div>
     </div>
-
-    <div class="theme-toggle" id="theme-toggle">
-        <i class="ri-moon-line"></i>
-    </div>
-
 </header>
 
-<script src="../js/script.js"></script>
+<div class="search-modal" id="search-modal">
+  <div class="search-box">
+    <input type="text" placeholder="Type to search...">
+    <ul>
+      <li><a href="portofolio.html">Portfolio</a></li>
+      <li><a href="cv.html">CV</a></li>
+      <li><a href="certifications.html">Certifications</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="../index.html">About</a></li>
+    </ul>
+  </div>
+</div>
+
+<main class="page-content">
+    <section class="blog-header" data-aos="fade-down">
+        <span>Thoughts and Blogs</span>
+        <h1>Read My Narrative</h1>
+        <p>Pages filled with technology wisdom, imagination and much more</p>
+    </section>
+
+    <section class="blog-grid">
+        <a href="#" class="blog-card" data-aos="fade-up" data-aos-delay="100">
+            <h2>Overcoming the Articulation Barrier in Gen AI</h2>
+            <div class="blog-icon">
+                <i class="ri-arrow-right-line"></i>
+            </div>
+        </a>
+
+        <a href="#" class="blog-card" data-aos="fade-up" data-aos-delay="200">
+            <h2>Making design system from scratch for B2C products</h2>
+            <div class="blog-icon">
+                <i class="ri-arrow-right-line"></i>
+            </div>
+        </a>
+
+        <a href="#" class="blog-card" data-aos="fade-up" data-aos-delay="300">
+            <h2>How to make design system from scratch for SAAS products</h2>
+            <div class="blog-icon">
+                <i class="ri-arrow-right-up-line"></i>
+            </div>
+        </a>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="footer-line"></div>
+    <p>© 2026 Bintang Ridwan Pribadi. All rights reserved.</p>
+</footer>
 
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
-    AOS.init({
-        offset:300,
-        duration:1400,
-    });
+    AOS.init({ offset: 100, duration: 1000, once: true });
 </script>
-
+<script src="../js/script.js"></script>
 </body>
-
 </html>

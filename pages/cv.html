@@ -3,50 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bintang Ridwan Pribadi</title>
-    <link rel="icon" href="./img/logo.png" type="image/icon type">
-    <!-- #CSS -->
-    <link rel="stylesheet" href="../css/style.css">
-    <!-- #box icon -->
+    <title>Curriculum Vitae | Bintang Ridwan Pribadi</title>
+    <link rel="icon" href="../img/logo.png" type="image/icon type">
 
-    <link rel="stylesheet"
-          href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-    <!--remox icon-->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-</head>
-<body>
 
-<header>
-    <div class="bx bx-menu" id="menu-icon"></div>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+<header id="navbar">
+    <div class="logo">
+      <div class="logo-box">t</div>
+      Agency
+    </div>
     <ul class="navlist">
         <li><a href="../index.html">About</a></li>
-        <li><a href="repository.html">Repository</a></li>
+        <li><a href="portofolio.html">Portfolio</a></li>
         <li><a href="certifications.html">Certifications</a></li>
-        <li><a href="cv.html">CV</a></li>
+        <li><a href="cv.html" class="active">CV</a></li>
         <li><a href="blog.html">Blog</a></li>
     </ul>
-
-    <div class="search-btn" id="search-btn">
-        <i class="ri-search-line"></i>
+    <div class="header-btns">
+        <a href="cv.html" class="h-btn">Download CV</a>
+        <i class="ri-search-line" id="search-btn"></i>
+        <div class="theme-toggle" id="theme-toggle">
+            <i class="ri-moon-line"></i>
+        </div>
+        <div class="bx bx-menu" id="menu-icon"></div>
     </div>
-
-    <div class="theme-toggle" id="theme-toggle">
-        <i class="ri-moon-line"></i>
-    </div>
-
 </header>
 
-<script src="../js/script.js"></script>
+<div class="search-modal" id="search-modal">
+  <div class="search-box">
+    <input type="text" placeholder="Type to search...">
+    <ul>
+      <li><a href="portofolio.html">Portfolio</a></li>
+      <li><a href="cv.html">CV</a></li>
+      <li><a href="certifications.html">Certifications</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="../index.html">About</a></li>
+    </ul>
+  </div>
+</div>
+
+<main class="cv-container">
+    <aside class="cv-sidebar" data-aos="fade-right">
+        <ul>
+            <li><a href="#basics">Basics</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#awards">Awards</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#languages">Languages</a></li>
+        </ul>
+    </aside>
+
+    <div class="cv-content" data-aos="fade-up">
+        <div class="cv-header">
+            <div>
+                <h1>CV</h1>
+                <p>Back End Developer & Technology Student</p>
+            </div>
+            <div class="pdf-icon">
+                <i class="ri-file-pdf-2-fill"></i>
+            </div>
+        </div>
+
+        <section class="cv-section" id="basics">
+            <h2>Basics</h2>
+            <div class="basics-grid">
+                <span>Name</span> <span>Bintang Ridwan Pribadi</span>
+                <span>Label</span> <span>Back End Developer</span>
+                <span>Email</span> <span>selamat.angkatan.corona@gmail.com</span>
+                <span>Phone</span> <span>+62 813-8131-9442</span>
+                <span>Summary</span> <span>Student at Telkom University with 2 years of experience in Graphic Design and currently focusing on Backend Development. Expert in PHP (Laravel), Flutter, and database management.</span>
+            </div>
+        </section>
+
+        <section class="cv-section" id="work">
+            <h2>Work</h2>
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <span class="timeline-title">Financial App Developer</span>
+                    <span class="timeline-date">2025 - Present</span>
+                </div>
+                <span class="timeline-subtitle">PMI (Palang Merah Indonesia) - Project</span>
+                <ul class="timeline-content">
+                    <li>Developed a financial management system for Palang Merah Indonesia.</li>
+                    <li>Integrated Laravel backend with secure database handling.</li>
+                    <li>Optimized reporting features for better financial transparency.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <span class="timeline-title">UI/UX & Graphic Designer</span>
+                    <span class="timeline-date">2023 - 2025</span>
+                </div>
+                <span class="timeline-subtitle">Freelance</span>
+                <ul class="timeline-content">
+                    <li>Created over 50+ digital assets for various clients.</li>
+                    <li>Designed "My Tel-U" campus app interface for traffic status features.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="cv-section" id="education">
+            <h2>Education</h2>
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <span class="timeline-title">Bachelor of Software Engineering</span>
+                    <span class="timeline-date">2022 - Present</span>
+                </div>
+                <span class="timeline-subtitle">Telkom University</span>
+                <p class="timeline-content">Focusing on Software Architecture, Web Development, and Mobile Programming.</p>
+            </div>
+        </section>
+
+        <section class="cv-section" id="skills">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-cat">
+                    <h4><i class="ri-code-s-slash-line"></i> Programming & Frameworks</h4>
+                    <p class="skill-list">PHP, Laravel, Dart, Flutter, JavaScript, Vue.js, Quasar, Kotlin, MySql.</p>
+                </div>
+                <div class="skill-cat">
+                    <h4><i class="ri-tools-line"></i> Development Tools</h4>
+                    <p class="skill-list">Git, GitHub, SonarQube, Android Studio, VS Code, Figma.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cv-section" id="languages">
+            <h2>Languages</h2>
+            <div class="skills-grid">
+                <div class="skill-cat">
+                    <h4>Indonesian</h4>
+                    <p class="skill-list">Native Speaker</p>
+                </div>
+                <div class="skill-cat">
+                    <h4>English</h4>
+                    <p class="skill-list">Conversational / Professional</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>© 2026 Bintang Ridwan Pribadi. Powered by passion for code.</p>
+</footer>
 
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
-    AOS.init({
-        offset:300,
-        duration:1400,
-    });
+    AOS.init({ offset: 100, duration: 1000 });
 </script>
-
+<script src="../js/script.js"></script>
 </body>
-
 </html>

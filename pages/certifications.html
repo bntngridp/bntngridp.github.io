@@ -3,49 +3,103 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bintang Ridwan Pribadi</title>
-  <link rel="icon" href="./img/logo.png" type="image/icon type">
-  <!-- #CSS -->
-  <link rel="stylesheet" href="../css/style.css">
-  <!-- #box icon -->
+  <title>Certifications | Bintang Ridwan Pribadi</title>
+  <link rel="icon" href="../img/logo.png" type="image/icon type">
 
-  <link rel="stylesheet"
-        href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-  <!--remox icon-->
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-</head>
-<body>
 
-<header>
-  <div class="bx bx-menu" id="menu-icon"></div>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+<header id="navbar">
+  <div class="logo">
+    <div class="logo-box">t</div>
+    Agency
+  </div>
+
   <ul class="navlist">
     <li><a href="../index.html">About</a></li>
-    <li><a href="repository.html">Repository</a></li>
-    <li><a href="certifications.html">Certifications</a></li>
+    <li><a href="portofolio.html">Portfolio</a></li>
+    <li><a href="certifications.html" class="active">Certifications</a></li>
     <li><a href="cv.html">CV</a></li>
     <li><a href="blog.html">Blog</a></li>
   </ul>
 
-  <div class="search-btn" id="search-btn">
-    <i class="ri-search-line"></i>
+  <div class="header-btns">
+    <a href="cv.html" class="h-btn">Download CV</a>
+    <i class="ri-search-line" id="search-btn"></i>
+    <div class="theme-toggle" id="theme-toggle">
+      <i class="ri-moon-line"></i>
+    </div>
+    <div class="bx bx-menu" id="menu-icon"></div>
   </div>
-
-  <div class="theme-toggle" id="theme-toggle">
-    <i class="ri-moon-line"></i>
-  </div>
-
 </header>
 
-<script src="../js/script.js"></script>
+<div class="search-modal" id="search-modal">
+  <div class="search-box">
+    <input type="text" placeholder="Type to search...">
+    <ul>
+      <li><a href="portofolio.html">Portfolio</a></li>
+      <li><a href="cv.html">CV</a></li>
+      <li><a href="certifications.html">Certifications</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="../index.html">About</a></li>
+    </ul>
+  </div>
+</div>
+
+<main class="page-content">
+  <section class="cert-header" data-aos="fade-down">
+    <span>My Achievements</span>
+    <h1>Professional Certifications</h1>
+    <p>Validated expertise through recognized institutions and industry leaders.</p>
+  </section>
+
+  <section class="cert-grid">
+    <div class="cert-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="cert-img-box">
+        <img src="../img/cert-1.jpg" alt="Certification 1">
+      </div>
+      <div class="cert-info">
+        <h3><i class="ri-star-smile-line"></i> Laravel Backend Dev</h3>
+        <p>Advanced backend development with Laravel framework, database architecture, and RESTful API.</p>
+      </div>
+    </div>
+
+    <div class="cert-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="cert-img-box">
+        <img src="../img/cert-2.jpg" alt="Certification 2">
+      </div>
+      <div class="cert-info">
+        <h3><i class="ri-star-smile-line"></i> Google UI/UX Design</h3>
+        <p>Comprehensive user experience design, wireframing, and interactive prototyping.</p>
+      </div>
+    </div>
+
+    <div class="cert-card" data-aos="fade-up" data-aos-delay="300">
+      <div class="cert-img-box">
+        <img src="../img/cert-3.jpg" alt="Certification 3">
+      </div>
+      <div class="cert-info">
+        <h3><i class="ri-star-smile-line"></i> Flutter Mobile Expert</h3>
+        <p>Cross-platform mobile application development with Dart and Flutter framework.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-line"></div>
+  <p>© 2026 Bintang Ridwan Pribadi. Verified Skills & Achievements.</p>
+</footer>
 
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
-  AOS.init({
-    offset:300,
-    duration:1400,
-  });
+  AOS.init({ offset: 100, duration: 1000, once: true });
 </script>
-
+<script src="../js/script.js"></script>
 </body>
 </html>

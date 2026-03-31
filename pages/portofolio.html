@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio | Bintang Ridwan Pribadi</title>
+  <link rel="icon" href="../img/logo.png" type="image/icon type">
+
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+<header id="navbar">
+  <div class="logo">
+    <div class="logo-box">t</div>
+    Agency
+  </div>
+
+  <ul class="navlist">
+    <li><a href="../index.html">About</a></li>
+    <li><a href="portofolio.html" class="active">Portfolio</a></li>
+    <li><a href="certifications.html">Certifications</a></li>
+    <li><a href="cv.html">CV</a></li>
+    <li><a href="blog.html">Blog</a></li>
+  </ul>
+
+  <div class="header-btns">
+    <a href="cv.html" class="h-btn">Download CV</a>
+    <i class="ri-search-line" id="search-btn"></i>
+    <div class="theme-toggle" id="theme-toggle">
+      <i class="ri-moon-line"></i>
+    </div>
+    <div class="bx bx-menu" id="menu-icon"></div>
+  </div>
+</header>
+
+<div class="search-modal" id="search-modal">
+  <div class="search-box">
+    <input type="text" placeholder="Type to search...">
+    <ul>
+      <li><a href="portofolio.html">Portfolio</a></li>
+      <li><a href="cv.html">CV</a></li>
+      <li><a href="certifications.html">Certifications</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="../index.html">About</a></li>
+    </ul>
+  </div>
+</div>
+
+<main class="page-content">
+  <section class="page-header" data-aos="fade-down">
+    <span>Curated Work</span>
+    <h1>Featured Case Studies</h1>
+    <p>Compilation of case studies and projects that showcase my skills in development and creative design.</p>
+  </section>
+
+  <section class="portfolio-container">
+
+    <div class="portfolio-card" data-aos="fade-up">
+      <div class="card-info">
+        <div class="card-tag">Laravel • 2023</div>
+        <h2>Financial Management for PMI</h2>
+        <ul>
+          <li><i class="ri-checkbox-circle-fill"></i> Optimized transaction tracking.</li>
+          <li><i class="ri-checkbox-circle-fill"></i> Automated financial reporting.</li>
+          <li><i class="ri-checkbox-circle-fill"></i> Secure user role management.</li>
+        </ul>
+        <a href="#" class="view-case-btn">View Case Study <i class="ri-arrow-right-up-line"></i></a>
+      </div>
+      <div class="card-img">
+        <img src="../img/port-1.jpg" alt="Project 1">
+      </div>
+    </div>
+
+    <div class="portfolio-card" data-aos="fade-up">
+      <div class="card-info">
+        <div class="card-tag">Flutter • 2024</div>
+        <h2>My Tel-U Traffic Status</h2>
+        <ul>
+          <li><i class="ri-checkbox-circle-fill"></i> Real-time campus traffic data.</li>
+          <li><i class="ri-checkbox-circle-fill"></i> User-friendly UI with brand colors.</li>
+        </ul>
+        <a href="#" class="view-case-btn">View Case Study <i class="ri-arrow-right-up-line"></i></a>
+      </div>
+      <div class="card-img">
+        <img src="../img/port-2.jpg" alt="Project 2">
+      </div>
+    </div>
+
+    <div class="portfolio-card" data-aos="fade-up">
+      <div class="card-info">
+        <div class="card-tag">Kotlin • 2023</div>
+        <h2>Volume Balok Simple App</h2>
+        <ul>
+          <li><i class="ri-checkbox-circle-fill"></i> Interactive mathematical calculation.</li>
+          <li><i class="ri-checkbox-circle-fill"></i> Lightweight Android performance.</li>
+        </ul>
+        <a href="#" class="view-case-btn">View Case Study <i class="ri-arrow-right-up-line"></i></a>
+      </div>
+      <div class="card-img">
+        <img src="../img/port-3.jpg" alt="Project 3">
+      </div>
+    </div>
+
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-content">
+    <p>© 2026 Bintang Ridwan Pribadi. Built with Passion & Clean Code.</p>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({ offset: 200, duration: 1000 });
+</script>
+<script src="../js/script.js"></script>
+</body>
+</html>
