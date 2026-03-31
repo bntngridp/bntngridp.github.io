@@ -33,3 +33,14 @@ if (toggle) {
         }
     });
 }
+
+const searchBtn = document.getElementById("search-btn");
+const searchModal = document.getElementById("search-modal");
+
+searchBtn.onclick = () => {
+    searchModal.classList.add("active");
+};
+
+searchModal.onclick = () => {
+    searchModal.classList.remove("active");
+};
