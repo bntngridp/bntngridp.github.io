@@ -8,14 +8,12 @@
   scroll-behavior: smooth;
 }
 :root {
-  --text-color: #ffffff;
-  --bg-color: #0f0f0f;
-  --second-bg-color: #1a1a1a;
+  --text-color: #e5e5e5;
+  --bg-color: #1a0f0f;
+  --second-bg-color: #221515;
 
-  /* 🔥 GANTI INI */
-  --main-color: #8B0000; /* dark red */
-  --other-color: #c9c9c9;
-
+  --main-color: #8B0000;
+  --other-color: #a1a1aa;
   --h1-font: 4.5rem;
   --h2-font: 2.9rem;
   --p-font: 1rem;
@@ -560,4 +558,28 @@ body.light-mode {
 .main-content p {
   max-width: 500px;
   margin: 0 auto 20px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top-btnn {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.theme-toggle {
+  font-size: 22px;
+  cursor: pointer;
+  color: var(--text-color);
+  margin-left: 10px;
+  transition: 0.3s;
+}
+
+.theme-toggle:hover {
+  color: var(--main-color);
+  transform: scale(1.1);
 }
