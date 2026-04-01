@@ -3,21 +3,132 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bintang Ridwan Pribadi | Agency</title>
+  <title>Bintang Ridwan Pribadi | Backend Developer</title>
   <link rel="icon" href="./img/logo.png" type="image/icon type">
 
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
-  <!-- gunakan CSS global -->
   <link rel="stylesheet" href="./css/style.css">
+
+  <style>
+    /* --- Custom Skills Styling (Rectangle) --- */
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 2rem;
+    }
+
+    .skill-card-rect {
+      display: flex;
+      align-items: center;
+      padding: 18px 25px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 51, 51, 0.1);
+      border-radius: 16px;
+      transition: all 0.4s ease;
+      gap: 15px;
+    }
+
+    .skill-card-rect:hover {
+      transform: translateX(10px);
+      border-color: var(--main-color);
+      background: rgba(139, 0, 0, 0.05);
+      box-shadow: -5px 0 20px rgba(139, 0, 0, 0.15);
+    }
+
+    .skill-icon {
+      font-size: 28px;
+      color: var(--main-color);
+      background: rgba(255, 255, 255, 0.03);
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+    }
+
+    .skill-info h4 { font-size: 1.1rem; font-weight: 600; color: var(--text-color); }
+    .skill-info p { font-size: 0.8rem; color: var(--other-color); }
+
+    /* --- New Minimalist Contact Styling (Like Image) --- */
+    .contact {
+      padding: 100px 10% 120px;
+      display: flex;
+      justify-content: flex-start; /* Sesuai gambar, teks rata kiri */
+    }
+
+    .contact-container {
+      max-width: 800px; /* Batasi lebar agar estetik */
+    }
+
+    .contact-container h2 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 50px;
+      color: var(--text-color);
+    }
+
+    .contact-container p {
+      color: var(--text-color); /* Teks lebih cerah agar mudah dibaca */
+      line-height: 1.6;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+      max-width: 700px;
+    }
+
+    .contact-email {
+      display: block;
+      color: var(--text-color);
+      font-weight: 500;
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      transition: 0.3s;
+    }
+
+    .contact-email:hover {
+      color: var(--main-color);
+    }
+
+    .social-links-minimal {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .social-links-minimal a {
+      font-size: 24px;
+      color: var(--text-color);
+      transition: 0.3s ease;
+    }
+
+    .social-links-minimal a:hover {
+      color: var(--main-color);
+      transform: translateY(-5px);
+    }
+
+    /* --- DIVIDER --- */
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 51, 51, 0.3), transparent);
+      margin: 2rem 0;
+    }
+
+    /* Light Mode Support */
+    body.light-mode .skill-card-rect {
+      background: #ffffff;
+      border-color: #eee;
+    }
+  </style>
 </head>
 <body>
+
 <header id="navbar">
   <div class="logo">
     <div class="logo-box">B</div>
-
   </div>
 
   <ul class="navlist">
@@ -39,7 +150,6 @@
   </div>
 </header>
 
-<!-- search modal global -->
 <div class="search-modal" id="search-modal">
   <div class="search-box">
     <input type="text" placeholder="Type to search...">
@@ -55,14 +165,14 @@
 <section class="hero" id="home">
   <div class="hero-wrapper">
     <div class="hero-text" data-aos="fade-right">
-      <div class="welcome-badge">Welcome</div>
-      <h1>I have <span>Creative Design</span> Experience</h1>
+      <div class="welcome-badge">Available for Projects</div>
+      <h1>I Build <span>Scalable & Robust</span> Backend Systems</h1>
       <p>
-        I'm Bintang Ridwan Pribadi, a dedicated student and developer. I build reliable systems and creative designs to solve digital problems.
+        I'm Bintang Ridwan Pribadi, a Software Engineering student and Backend Developer. I specialize in crafting efficient APIs, managing complex databases, and ensuring your application's server-side logic is seamless and secure.
       </p>
       <div class="hero-btns">
-        <a href="#contact" class="btn">Contact Me</a>
-        <a href="#portfolio" class="view-work">View Portfolio <i class="ri-arrow-right-up-line"></i></a>
+        <a href="#contact" class="btn">Get In Touch</a>
+        <a href="pages/portofolio.html" class="view-work">Explore Work <i class="ri-arrow-right-up-line"></i></a>
       </div>
     </div>
 
@@ -80,69 +190,90 @@
       </div>
     </div>
   </div>
-
-  <div class="hero-stats" data-aos="fade-up">
-    <div class="stat-item">
-      <h2>80+</h2>
-      <p>Satisfied clients</p>
-    </div>
-    <div class="stat-item">
-      <h2>200+</h2>
-      <p>Projects completed</p>
-    </div>
-    <div class="stat-item">
-      <h2>99+</h2>
-      <p>Reviews given</p>
-    </div>
-  </div>
 </section>
 
 <section class="services" id="services">
   <div class="center-text" data-aos="fade-down">
-    <h2>My <span>Skills</span></h2>
+    <h2>Technical <span>Skills</span></h2>
+    <p style="color: var(--other-color); margin-top: 10px;">Core technologies powering my backend architecture</p>
   </div>
-  <div class="box-grid" data-aos="zoom-in-up">
-    <div class="card">
-      <h3>UI/UX Design</h3>
-      <p>Creating intuitive interfaces and user experiences with a focus on usability.</p>
+
+  <div class="skills-container" data-aos="fade-up">
+    <div class="skill-card-rect">
+      <div class="skill-icon"><i class="ri-code-box-line"></i></div>
+      <div class="skill-info">
+        <h4>PHP & Laravel</h4>
+        <p>Expert in RESTful APIs</p>
+      </div>
     </div>
-    <div class="card">
-      <h3>Backend Development</h3>
-      <p>Building scalable systems using Laravel, PHP, and clean database architectures.</p>
+
+    <div class="skill-card-rect">
+      <div class="skill-icon"><i class="ri-database-2-line"></i></div>
+      <div class="skill-info">
+        <h4>MySQL</h4>
+        <p>Database Optimization</p>
+      </div>
     </div>
-    <div class="card">
-      <h3>Graphic Design</h3>
-      <p>Specializing in minimalist and modern visual communication for digital platforms.</p>
+
+    <div class="skill-card-rect">
+      <div class="skill-icon"><i class="ri-flutter-fill"></i></div>
+      <div class="skill-info">
+        <h4>Flutter</h4>
+        <p>Cross-platform Apps</p>
+      </div>
+    </div>
+
+    <div class="skill-card-rect">
+      <div class="skill-icon"><i class="ri-git-branch-line"></i></div>
+      <div class="skill-info">
+        <h4>Git & GitHub</h4>
+        <p>Version Control Expert</p>
+      </div>
+    </div>
+
+    <div class="skill-card-rect">
+      <div class="skill-icon"><i class="ri-braces-line"></i></div>
+      <div class="skill-info">
+        <h4>JavaScript</h4>
+        <p>Web Interactivity</p>
+      </div>
+    </div>
+
+    <div class="skill-card-rect">
+      <div class="skill-icon"><i class="ri-terminal-box-line"></i></div>
+      <div class="skill-info">
+        <h4>Postman</h4>
+        <p>API Testing & Docs</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="portfolio" id="portfolio">
-  <div class="center-text" data-aos="fade-down">
-    <h2>My <span>Portfolio</span></h2>
-  </div>
+<div class="section-divider" data-aos="fade-up"></div>
 
-  <div class="box-grid" data-aos="zoom-in-up">
-    <div class="card">
-      <h5>HackerRank Solve</h5>
-      <p>Simple ways to solve complex algorithm challenges.</p>
-      <a href="https://github.com/guanshiyin28/HackerRank" target="_blank">View Project</a>
-    </div>
-    <div class="card">
-      <h5>Minimalist Login</h5>
-      <p>Animated and clean login page design using modern CSS.</p>
-      <a href="https://github.com/guanshiyin28/Minimalist-Animated-Login" target="_blank">View Project</a>
+<section class="contact" id="contact">
+  <div class="contact-container" data-aos="fade-right">
+    <h2>Contact</h2>
+    <p>I'm currently looking to join a cross-functional team that values improving people's lives through accessible backend systems. Or have a project in mind? Let's connect.</p>
+
+    <a href="mailto:selamat.angkatan.corona@gmail.com" class="contact-email">selamat.angkatan.corona@gmail.com</a>
+
+    <div class="social-links-minimal">
+      <a href="https://instagram.com/guanshiyin_" target="_blank"><i class="ri-instagram-line"></i></a>
+      <a href="https://github.com/guanshiyin28" target="_blank"><i class="ri-github-fill"></i></a>
+      <a href="https://linkedin.com/in/bintangridp" target="_blank"><i class="ri-linkedin-box-fill"></i></a>
+      <a href="#" target="_blank"><i class="ri-google-fill"></i></a>
     </div>
   </div>
 </section>
 
 <footer class="footer">
-  <p>© 2026 Bintang Ridwan Pribadi. All Rights Reserved.</p>
+  <p>© 2026 Bintang Ridwan Pribadi. Built with Passion & Clean Code.</p>
 </footer>
 
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
-  AOS.init({ offset: 100, duration: 1000 });
+  AOS.init({ offset: 100, duration: 1000, once: true });
 </script>
 <script src="./js/script.js"></script>
 </body>
