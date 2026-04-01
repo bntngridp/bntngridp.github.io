@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Repositories | Bintang Ridwan Pribadi</title>
+  <link rel="icon" href="../img/logo.png" type="image/icon type">
+
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+  <!-- pakai CSS global -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+<header id="navbar">
+  <div class="logo">
+    <div class="logo-box">B</div>
+  </div>
+
+  <ul class="navlist">
+    <li><a href="../index.html">About</a></li>
+    <li><a href="portofolio.html">Portfolio</a></li>
+    <li><a href="certifications.html">Certifications</a></li>
+    <li><a href="repository.html" class="active">Repositories</a></li>
+    <li><a href="cv.html">CV</a></li>
+    <li><a href="blog.html">Blog</a></li>
+  </ul>
+
+  <div class="header-btns">
+    <a href="cv.html" class="h-btn">Download CV</a>
+    <i class="ri-search-line" id="search-btn"></i>
+    <div class="theme-toggle" id="theme-toggle">
+      <i class="ri-moon-line"></i>
+    </div>
+    <div class="bx bx-menu" id="menu-icon"></div>
+  </div>
+</header>
+
+<!-- search modal sama seperti halaman lain -->
+<div class="search-modal" id="search-modal">
+  <div class="search-box">
+    <input type="text" placeholder="Type to search...">
+    <ul>
+      <li><a href="portofolio.html">Portfolio</a></li>
+      <li><a href="cv.html">CV</a></li>
+      <li><a href="certifications.html">Certifications</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="../index.html">About</a></li>
+      <li><a href="repository.html">Repositories</a></li>
+    </ul>
+  </div>
+</div>
+
+<main class="page-content">
+  <section class="repo-header" data-aos="fade-down">
+    <div class="repo-stats">
+      <div class="stat-item">
+        <h2>45</h2>
+        <p>Repositories</p>
+      </div>
+      <div class="stat-item">
+        <h2>120</h2>
+        <p>Total Stars</p>
+      </div>
+      <div class="stat-item">
+        <h2>28</h2>
+        <p>Total Forks</p>
+      </div>
+    </div>
+    <div class="github-btn-center">
+      <a href="https://github.com/guanshiyin28" target="_blank" class="gh-profile-btn">
+        <i class="ri-github-fill"></i> VIEW GITHUB PROFILE
+      </a>
+    </div>
+  </section>
+
+  <div class="repo-filters" data-aos="fade-up">
+    <input type="text" class="search-input" placeholder="Search repositories...">
+    <select class="filter-select">
+      <option>All Languages</option>
+      <option>PHP</option>
+      <option>JavaScript</option>
+      <option>Dart</option>
+    </select>
+    <select class="filter-select">
+      <option>Recently Updated</option>
+      <option>Most Stars</option>
+    </select>
+    <div class="reset-btn"><i class="ri-refresh-line"></i> RESET</div>
+  </div>
+
+  <div class="repo-grid">
+    <div class="repo-card" data-aos="fade-up">
+      <div>
+        <div class="repo-title"><i class="ri-git-repository-line"></i> financial-pmi-system</div>
+        <p class="repo-desc">Backend system for Palang Merah Indonesia financial management using Laravel.</p>
+      </div>
+      <div class="repo-meta">
+        <span><i class="ri-time-line"></i> Updated Mar 28, 2026</span>
+        <span class="lang-tag">PHP</span>
+      </div>
+    </div>
+
+    <div class="repo-card" data-aos="fade-up" data-aos-delay="100">
+      <div>
+        <div class="repo-title"><i class="ri-git-repository-line"></i> my-telu-traffic</div>
+        <p class="repo-desc">Mobile application to monitor campus traffic status built with Flutter.</p>
+      </div>
+      <div class="repo-meta">
+        <span><i class="ri-time-line"></i> Updated Mar 15, 2026</span>
+        <span class="lang-tag">DART</span>
+      </div>
+    </div>
+
+    <div class="repo-card" data-aos="fade-up" data-aos-delay="200">
+      <div>
+        <div class="repo-title"><i class="ri-git-repository-line"></i> minimalist-portfolio</div>
+        <p class="repo-desc">Source code of this modern portfolio website. Pure HTML, CSS, and JS.</p>
+      </div>
+      <div class="repo-meta">
+        <span><i class="ri-time-line"></i> Updated Apr 01, 2026</span>
+        <span class="lang-tag">HTML</span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <p>© 2026 Bintang Ridwan Pribadi. Powered by GitHub API.</p>
+</footer>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({ offset: 100, duration: 1000, once: true });
+</script>
+<script src="../js/script.js"></script>
+</body>
+</html>

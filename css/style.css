@@ -125,10 +125,19 @@ header.sticky {
   color: var(--text-color);
 }
 
-/* hero section (index) */
+/* section & page container */
 section {
   padding: 120px 10% 80px;
 }
+
+/* tambahkan container global untuk halaman seperti portfolio, blog, repository */
+.page-content {
+  padding: 150px 10% 80px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* hero section (index) */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -765,6 +774,156 @@ body.light-mode .search-box ul li a {
   color: #111111;
 }
 
+/* =========================
+   REPOSITORY PAGE STYLES
+   (dipindah dari inline CSS repository.html)
+   ========================= */
+
+.repo-stats {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.repo-stats .stat-item h2 {
+  font-size: 3rem;
+  color: var(--main-color);
+}
+.repo-stats .stat-item p {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--other-color);
+}
+
+.github-btn-center {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+.gh-profile-btn {
+  padding: 12px 25px;
+  background: var(--second-bg-color);
+  border: 1px solid rgba(255, 51, 51, 0.15);
+  color: var(--text-color);
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: 0.3s;
+}
+.gh-profile-btn:hover {
+  background: var(--main-color);
+  color: #ffffff;
+  border-color: var(--main-color);
+}
+
+/* filter & search bar di halaman repository */
+.repo-filters {
+  background: var(--second-bg-color);
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 51, 51, 0.15);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.repo-filters .search-input {
+  flex: 1;
+  min-width: 250px;
+  background: var(--bg-color);
+  border: 1px solid rgba(255, 51, 51, 0.15);
+  padding: 12px 20px;
+  border-radius: 12px;
+  color: var(--text-color);
+  outline: none;
+}
+.repo-filters .filter-select {
+  padding: 12px 15px;
+  background: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid rgba(255, 51, 51, 0.15);
+  border-radius: 12px;
+  outline: none;
+}
+.repo-filters .reset-btn {
+  padding: 12px 20px;
+  border: 1px solid var(--main-color);
+  color: var(--main-color);
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.repo-filters .reset-btn:hover {
+  background: var(--main-color);
+  color: #ffffff;
+}
+
+/* repo grid / cards */
+.repo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+}
+.repo-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 51, 51, 0.15);
+  padding: 30px;
+  transition: 0.4s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+}
+.repo-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--main-color);
+  box-shadow: 0 15px 30px rgba(255, 51, 51, 0.1);
+}
+.repo-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: var(--text-color);
+}
+.repo-title i {
+  color: var(--main-color);
+}
+.repo-desc {
+  font-size: 14px;
+  color: var(--other-color);
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+.repo-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--other-color);
+}
+.lang-tag {
+  padding: 4px 10px;
+  background: var(--main-color);
+  color: #ffffff;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 10px;
+}
+
 /* responsive */
 @media (max-width: 1200px) {
   section,
@@ -802,6 +961,7 @@ body.light-mode .search-box ul li a {
     padding: 140px 6% 70px;
   }
 }
+
 @media (max-width: 950px) {
   #menu-icon {
     display: block;
@@ -825,16 +985,15 @@ body.light-mode .search-box ul li a {
   .navlist.active {
     right: 0;
   }
-  .cv-container {
-    grid-template-columns: 1fr;
+  /* sesuaikan repo stats di mobile */
+  .repo-stats {
+    gap: 20px;
   }
-  .cv-sidebar {
-    display: none;
-  }
-  .cv-content {
-    padding: 30px 24px;
+  .repo-stats .stat-item h2 {
+    font-size: 2rem;
   }
 }
+
 @media (max-width: 640px) {
   :root {
     --h1-font: 3rem;
