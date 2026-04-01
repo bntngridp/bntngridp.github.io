@@ -110,3 +110,54 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const searchModal = document.getElementById("search-modal");
+  const searchInput = searchModal ? searchModal.querySelector("input") : null;
+
+  // Fungsi untuk membuka modal
+  const openSearch = () => {
+    if (searchModal) {
+      searchModal.classList.add("active");
+      // Auto focus ke input saat terbuka
+      setTimeout(() => searchInput?.focus(), 100);
+    }
+  };
+
+  // Fungsi untuk menutup modal
+  const closeSearch = () => {
+    searchModal?.classList.remove("active");
+  };
+
+  // 1. Event Listener untuk klik tombol (icon)
+  const searchBtn = document.getElementById("search-btn");
+  if (searchBtn) {
+    searchBtn.onclick = (e) => {
+      e.stopPropagation();
+      openSearch();
+    };
+  }
+
+  // 2. Event Listener untuk Shortcut Keyboard (CMD+K atau CTRL+K)
+  document.addEventListener("keydown", (e) => {
+    // Mendeteksi Cmd+K (Mac) atau Ctrl+K (Windows/Linux)
+    if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+      e.preventDefault(); // Mencegah browser membuka search default atau aksi lain
+      openSearch();
+    }
+
+    // Menutup dengan tombol Escape
+    if (e.key === "Escape") {
+      closeSearch();
+    }
+  });
+
+  // 3. Klik di luar modal untuk menutup
+  if (searchModal) {
+    searchModal.onclick = () => closeSearch();
+    const searchBox = searchModal.querySelector(".search-box");
+    if (searchBox) {
+      searchBox.onclick = (e) => e.stopPropagation();
+    }
+  }
+});

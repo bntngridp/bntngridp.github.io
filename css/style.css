@@ -994,6 +994,42 @@ body.light-mode .search-box ul li a {
   }
 }
 
+.search-trigger {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 5px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 51, 51, 0.1);
+  transition: 0.3s;
+}
+
+.search-trigger:hover {
+  border-color: var(--main-color);
+  background: rgba(139, 0, 0, 0.1);
+}
+
+.search-kb {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--other-color);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Light mode support */
+body.light-mode .search-trigger {
+  background: #f3f3f3;
+}
+body.light-mode .search-kb {
+  background: #e0e0e0;
+  color: #555;
+}
+
 @media (max-width: 640px) {
   :root {
     --h1-font: 3rem;
@@ -1017,3 +1053,4 @@ body.light-mode .search-box ul li a {
     padding: 30px 22px;
   }
 }
+
