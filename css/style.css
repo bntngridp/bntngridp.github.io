@@ -432,13 +432,20 @@ body.light-mode .blog-card::before {
 .cv-sidebar ul li a:hover {
   color: var(--main-color);
   border-left-color: var(--main-color);
-  background: rgba(255,255,255,0.03);
+  /* Background hover lebih halus dengan tint merah */
+  background: rgba(139, 0, 0, 0.1);
+  border-radius: 0 8px 8px 0;
 }
 .cv-content {
-  background: rgba(0,0,0,0.25);
-  border-radius: 20px;
-  border: 1px solid rgba(255,255,255,0.08);
-  padding: 45px;
+  /* Gradasi Gelap ke Merah Sangat Tua (Night Mode) */
+  background: linear-gradient(145deg, rgba(34, 21, 21, 0.9) 0%, rgba(15, 10, 10, 0.95) 100%);
+  border-radius: 24px;
+  /* Border merah transparan agar terlihat 'menyala' tipis */
+  border: 1px solid rgba(139, 0, 0, 0.3);
+  padding: 50px;
+  /* Shadow merah halus untuk kedalaman */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 15px rgba(139, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
 }
 .cv-header {
   display: flex;
@@ -473,11 +480,42 @@ body.light-mode .blog-card::before {
 .basics-grid {
   display: grid;
   grid-template-columns: 150px 1fr;
-  gap: 12px;
-  background: rgba(255,255,255,0.02);
-  padding: 20px;
-  border-radius: 12px;
+  gap: 15px;
+  /* Warna kotak info dasar: Putih transparan dengan tint merah */
+  background: rgba(255, 255, 255, 0.03);
+  padding: 25px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
+
+body.light-mode .cv-sidebar ul li a:hover {
+  background: rgba(139, 0, 0, 0.05);
+}
+
+body.light-mode .basics-grid {
+  /* Kotak info di light mode: Merah pucat bersih */
+  background: rgba(139, 0, 0, 0.02);
+  border: 1px solid rgba(139, 0, 0, 0.08);
+}
+
+/* Penyesuaian Light Mode untuk CV */
+body.light-mode .cv-content {
+  /* Gradasi Putih ke Merah Sangat Muda */
+  background: linear-gradient(145deg, #ffffff 0%, #fff5f5 100%);
+  border: 1px solid rgba(139, 0, 0, 0.1);
+  box-shadow: 0 20px 40px rgba(139, 0, 0, 0.05);
+  color: #111;
+}
+
+.cv-sidebar ul li a {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cv-content h2 {
+  /* Memberikan sedikit glow pada judul section */
+  text-shadow: 0 0 10px rgba(139, 0, 0, 0.2);
+}
+
 .basics-grid span:nth-child(odd) {
   font-weight: 600;
   color: var(--other-color);
@@ -499,13 +537,25 @@ body.light-mode .blog-card::before {
   margin-bottom: 6px;
   display: block;
 }
-.timeline-date {
-  background: var(--main-color);
-  color: #ffffff;
-  padding: 2px 12px;
+/* Timeline Badge (Date) */
+timeline-date {
+  background: var(--main-color); /* Merah marun kamu */
+  color: #ffffff;               /* Ganti dari hitam ke putih */
+  padding: 4px 14px;            /* Sedikit lebih lebar agar lega */
   border-radius: 20px;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 700;             /* Tebalkan sedikit agar makin jelas */
+  display: inline-block;
+  box-shadow: 0 4px 12px rgba(139, 0, 0, 0.3); /* Shadow merah halus */
+  letter-spacing: 0.5px;
 }
+
+/* Jika ingin transisi halus saat hover */
+.timeline-item:hover .timeline-date {
+  transform: scale(1.05);
+  transition: 0.3s;
+}
+
 .timeline-content {
   color: var(--other-color);
   font-size: 0.9rem;
