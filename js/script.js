@@ -120,4 +120,122 @@ document.addEventListener("DOMContentLoaded", () => {
       closeSearch();
     }
   });
+
+  // --- PORTFOLIO MODAL CLOSE HANDLERS ---
+  const modal = document.getElementById("project-modal");
+  if (modal) {
+    const closeBtn = modal.querySelector(".close-modal");
+
+    // klik tombol X
+    if (closeBtn) {
+      closeBtn.addEventListener("click", () => {
+        closeProject();
+      });
+    }
+
+    // klik di luar konten (overlay)
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        closeProject();
+      }
+    });
+
+    // ESC untuk tutup
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.style.display === "flex") {
+        closeProject();
+      }
+    });
+  }
 });
+
+const projectData = {
+  pmi: {
+    tag: "Laravel • 2023",
+    title: "Financial and Management for PMI",
+    desc: "Sistem ini dibangun untuk mendigitalisasi pencatatan keuangan manual...",
+    arch: "Menggunakan Service-Repository Pattern...",
+    erd: "../img/port-1.jpg",
+    // Daftar Path Logo Teknologi (Simpan di asset kamu)
+    techLogos: [
+      "../img/tech/laravel.svg",
+      "../img/tech/mysql.svg",
+      "../img/tech/php.svg"
+    ],
+    // ISI LINK GITHUB DISINI
+    githubUrl: "https://github.com/guanshiyin28/HackerRank"
+  },
+  telu: {
+    tag: "Flutter • 2024",
+    title: "My Tel-U Traffic Status",
+    desc: "Aplikasi mobile untuk monitoring kepadatan lalu lintas...",
+    arch: "Menerapkan Clean Architecture...",
+    erd: "../img/port-2.jpg",
+    techLogos: [
+      "../img/tech/flutter.svg",
+      "../img/tech/firebase.svg"
+    ],
+    // JIKA TIDAK INGIN ADA GITHUB, KOSONGKAN SAJA ""
+    githubUrl: ""
+  },
+  balok: {
+    tag: "Kotlin • 2023",
+    title: "Volume Balok Simple App",
+    desc: "Aplikasi Android sederhana untuk menghitung volume balok dengan antarmuka ringan.",
+    arch: "Menggunakan arsitektur sederhana dengan Activity tunggal dan perhitungan langsung di layer UI.",
+    erd: "../img/port-3.jpg",
+    techLogos: [
+      "../img/tech/kotlin.svg",
+      "../img/tech/android.svg"
+    ],
+    githubUrl: ""
+  }
+};
+
+function openProject(id) {
+  const data = projectData[id];
+  if (!data) return;
+
+  document.getElementById('m-tag').innerText = data.tag;
+  document.getElementById('m-title').innerText = data.title;
+  document.getElementById('m-desc').innerText = data.desc;
+  document.getElementById('m-arch').innerText = data.arch;
+  document.getElementById('m-erd').src = data.erd;
+
+  // 1. Logika Render Logo Teknologi
+  const techContainer = document.getElementById('m-tech');
+  techContainer.innerHTML = "";
+  data.techLogos.forEach(logoPath => {
+    techContainer.innerHTML += `
+            <div class="tech-logo-item" title="Technology">
+                <img src="${logoPath}" alt="tech">
+            </div>`;
+  });
+
+  // 2. Logika Kondisi Tombol GitHub
+  const githubContainer = document.getElementById('github-link-container');
+  githubContainer.innerHTML = ""; // Reset dulu
+
+  if (data.githubUrl !== "") {
+    githubContainer.innerHTML = `
+            <a href="${data.githubUrl}" target="_blank" class="github-modal-btn">
+                <i class="ri-github-fill"></i> View on GitHub
+            </a>
+        `;
+  }
+
+  const modal = document.getElementById('project-modal');
+  if (modal) {
+    modal.style.display = "flex";
+    document.body.style.overflow = "hidden";
+  }
+}
+
+/** Tutup modal project (dipakai di tombol X, klik overlay, dan ESC) */
+function closeProject() {
+  const modal = document.getElementById('project-modal');
+  if (modal) {
+    modal.style.display = "none";
+    document.body.style.overflow = "";
+  }
+}

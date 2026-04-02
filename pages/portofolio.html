@@ -7,9 +7,8 @@
   <link rel="icon" href="../img/general/logo.png" type="image/icon type">
 
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
   <link rel="stylesheet" href="../css/style.css">
 </head>
 
@@ -26,7 +25,6 @@
     <li><a href="repository.html">Repositories</a></li>
     <li><a href="cv.html">CV</a></li>
     <li><a href="blog.html">Blog</a></li>
-
   </ul>
 
   <div class="header-btns">
@@ -34,7 +32,8 @@
     <div class="search-trigger" id="search-btn">
       <i class="ri-search-line"></i>
       <span class="search-kb">/ K</span>
-    </div>    <div class="theme-toggle" id="theme-toggle">
+    </div>
+    <div class="theme-toggle" id="theme-toggle">
       <i class="ri-moon-line"></i>
     </div>
     <div class="bx bx-menu" id="menu-icon"></div>
@@ -55,10 +54,11 @@
 </div>
 
 <main class="page-content">
+
   <section class="page-header" data-aos="fade-down">
     <span>Curated Work</span>
     <h1>Featured Case Studies</h1>
-    <p>Compilation of case studies and projects that showcase my skills in development and creative design.</p>
+    <p>Compilation of case studies and projects that showcase my skills in backend development and system architecture.</p>
   </section>
 
   <section class="portfolio-container">
@@ -66,20 +66,22 @@
     <div class="portfolio-card" data-aos="fade-up">
       <div class="card-info">
         <div class="card-tag">Laravel • 2023</div>
-        <h2>Financial Management for PMI</h2>
+        <h2>Financial and Management for PMI</h2>
         <ul>
           <li><i class="ri-checkbox-circle-fill"></i> Optimized transaction tracking.</li>
           <li><i class="ri-checkbox-circle-fill"></i> Automated financial reporting.</li>
           <li><i class="ri-checkbox-circle-fill"></i> Secure user role management.</li>
         </ul>
-        <a href="#" class="view-case-btn">View Case Study <i class="ri-arrow-right-up-line"></i></a>
+        <a href="javascript:void(0)" class="view-case-btn" onclick="openProject('pmi')">
+          View Details <i class="ri-arrow-right-up-line"></i>
+        </a>
       </div>
       <div class="card-img">
-        <img src="../img/port-1.jpg" alt="Project 1">
+        <img src="../img/port-1.jpg" alt="PMI Project">
       </div>
     </div>
 
-    <div class="portfolio-card" data-aos="fade-up">
+    <div class="portfolio-card" data-aos="fade-up" data-aos-delay="100">
       <div class="card-info">
         <div class="card-tag">Flutter • 2024</div>
         <h2>My Tel-U Traffic Status</h2>
@@ -87,14 +89,16 @@
           <li><i class="ri-checkbox-circle-fill"></i> Real-time campus traffic data.</li>
           <li><i class="ri-checkbox-circle-fill"></i> User-friendly UI with brand colors.</li>
         </ul>
-        <a href="#" class="view-case-btn">View Case Study <i class="ri-arrow-right-up-line"></i></a>
+        <a href="javascript:void(0)" class="view-case-btn" onclick="openProject('telu')">
+          View Details <i class="ri-arrow-right-up-line"></i>
+        </a>
       </div>
       <div class="card-img">
-        <img src="../img/port-2.jpg" alt="Project 2">
+        <img src="../img/port-2.jpg" alt="Traffic Project">
       </div>
     </div>
 
-    <div class="portfolio-card" data-aos="fade-up">
+    <div class="portfolio-card" data-aos="fade-up" data-aos-delay="200">
       <div class="card-info">
         <div class="card-tag">Kotlin • 2023</div>
         <h2>Volume Balok Simple App</h2>
@@ -102,15 +106,57 @@
           <li><i class="ri-checkbox-circle-fill"></i> Interactive mathematical calculation.</li>
           <li><i class="ri-checkbox-circle-fill"></i> Lightweight Android performance.</li>
         </ul>
-        <a href="#" class="view-case-btn">View Case Study <i class="ri-arrow-right-up-line"></i></a>
+        <a href="javascript:void(0)" class="view-case-btn" onclick="openProject('balok')">
+          View Details <i class="ri-arrow-right-up-line"></i>
+        </a>
       </div>
       <div class="card-img">
-        <img src="../img/port-3.jpg" alt="Project 3">
+        <img src="../img/port-3.jpg" alt="Balok Project">
       </div>
     </div>
 
   </section>
 </main>
+
+<div id="project-modal" class="modal-overlay">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+
+    <div class="modal-body">
+      <div class="modal-header-info">
+        <span id="m-tag" class="card-tag"></span>
+        <h2 id="m-title"></h2>
+
+        <div id="m-tech" class="tech-stack-img-container"></div>
+
+        <div id="github-link-container" style="margin-top: 20px;">
+        </div>
+      </div>
+
+      <div class="modal-grid">
+        <div class="modal-left">
+          <div class="modal-section">
+            <h3><i class="ri-information-line"></i> Overview</h3>
+            <p id="m-desc"></p>
+          </div>
+          <div class="modal-section">
+            <h3><i class="ri-node-tree"></i> System Architecture</h3>
+            <p id="m-arch"></p>
+          </div>
+        </div>
+
+        <div class="modal-right">
+          <div class="modal-section">
+            <h3><i class="ri-database-2-line"></i> ERD Diagram</h3>
+            <div class="img-box-modal">
+              <img id="m-erd" src="" alt="ERD Diagram">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <footer class="footer">
   <div class="footer-content">
