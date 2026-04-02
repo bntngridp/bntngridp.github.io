@@ -1,6 +1,6 @@
 /**
  * script.js - Bintang Ridwan Pribadi Portfolio
- * Menangani: Theme Toggle (Persistence), Sticky Header, Mobile Menu, & Search Modal
+ * Menangani: Theme Toggle (Persistence), Sticky Header, Mobile Menu, & Search Modal + Shortcut
  */
 
 // 1. FUNGSI UNTUK MENERAPKAN TEMA (Dipanggil segera agar tidak 'flashing')
@@ -10,25 +10,22 @@ function applyTheme() {
 
   if (savedTheme === "light") {
     document.body.classList.add("light-mode");
-    if (icon) {
-      icon.classList.replace("ri-moon-line", "ri-sun-line");
-    }
+    if (icon) icon.classList.replace("ri-moon-line", "ri-sun-line");
   } else {
     document.body.classList.remove("light-mode");
-    if (icon) {
-      icon.classList.replace("ri-sun-line", "ri-moon-line");
-    }
+    if (icon) icon.classList.replace("ri-sun-line", "ri-moon-line");
   }
 }
 
 // Jalankan pengecekan tema segera
 applyTheme();
 
+// Satu DOMContentLoaded saja (gabungan)
 document.addEventListener("DOMContentLoaded", () => {
-  // Jalankan ulang applyTheme setelah DOM siap untuk memastikan Ikon sinkron
+  // Sinkronkan lagi setelah DOM siap
   applyTheme();
 
-  // --- 2. THEME TOGGLE EVENT ---
+  // --- THEME TOGGLE EVENT ---
   const themeToggle = document.getElementById("theme-toggle");
   if (themeToggle) {
     themeToggle.addEventListener("click", () => {
@@ -38,17 +35,19 @@ document.addEventListener("DOMContentLoaded", () => {
       // Simpan pilihan ke localStorage
       localStorage.setItem("theme", isLight ? "light" : "dark");
 
-      // Update Ikon secara real-time
+      // Update ikon
       const icon = themeToggle.querySelector("i");
-      if (isLight) {
-        icon.classList.replace("ri-moon-line", "ri-sun-line");
-      } else {
-        icon.classList.replace("ri-sun-line", "ri-moon-line");
+      if (icon) {
+        if (isLight) {
+          icon.classList.replace("ri-moon-line", "ri-sun-line");
+        } else {
+          icon.classList.replace("ri-sun-line", "ri-moon-line");
+        }
       }
     });
   }
 
-  // --- 3. STICKY HEADER ---
+  // --- STICKY HEADER ---
   const header = document.querySelector("header");
   if (header) {
     window.addEventListener("scroll", () => {
@@ -56,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- 4. MOBILE MENU ---
+  // --- MOBILE MENU ---
   const menuIcon = document.querySelector("#menu-icon");
   const navlist = document.querySelector(".navlist");
 
@@ -66,14 +65,12 @@ document.addEventListener("DOMContentLoaded", () => {
       navlist.classList.toggle("active");
     };
 
-    // Tutup menu saat scroll
     window.addEventListener("scroll", () => {
       menuIcon.classList.remove("bx-x");
       navlist.classList.remove("active");
     });
 
-    // Tutup menu saat link diklik (untuk mobile)
-    navlist.querySelectorAll("a").forEach(link => {
+    navlist.querySelectorAll("a").forEach((link) => {
       link.onclick = () => {
         menuIcon.classList.remove("bx-x");
         navlist.classList.remove("active");
@@ -81,78 +78,29 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- 5. SEARCH MODAL ---
-  const searchBtn = document.getElementById("search-btn");
+  // --- SEARCH MODAL + SHORTCUT CMD/CTRL+K ---
   const searchModal = document.getElementById("search-modal");
+  const searchBtn = document.getElementById("search-btn");
+  const searchInput = searchModal ? searchModal.querySelector("input") : null;
+
+  const openSearch = () => {
+    if (searchModal) {
+      searchModal.classList.add("active");
+      setTimeout(() => searchInput && searchInput.focus(), 100);
+    }
+  };
+
+  const closeSearch = () => {
+    if (searchModal) searchModal.classList.remove("active");
+  };
 
   if (searchBtn && searchModal) {
     searchBtn.onclick = (e) => {
       e.stopPropagation();
-      searchModal.classList.add("active");
-    };
-
-    // Klik di luar box untuk menutup
-    searchModal.onclick = () => {
-      searchModal.classList.remove("active");
-    };
-
-    // Mencegah modal tertutup saat klik di dalam box pencarian
-    const searchBox = searchModal.querySelector(".search-box");
-    if (searchBox) {
-      searchBox.onclick = (e) => e.stopPropagation();
-    }
-
-    // Tutup dengan tombol ESC
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        searchModal.classList.remove("active");
-      }
-    });
-  }
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const searchModal = document.getElementById("search-modal");
-  const searchInput = searchModal ? searchModal.querySelector("input") : null;
-
-  // Fungsi untuk membuka modal
-  const openSearch = () => {
-    if (searchModal) {
-      searchModal.classList.add("active");
-      // Auto focus ke input saat terbuka
-      setTimeout(() => searchInput?.focus(), 100);
-    }
-  };
-
-  // Fungsi untuk menutup modal
-  const closeSearch = () => {
-    searchModal?.classList.remove("active");
-  };
-
-  // 1. Event Listener untuk klik tombol (icon)
-  const searchBtn = document.getElementById("search-btn");
-  if (searchBtn) {
-    searchBtn.onclick = (e) => {
-      e.stopPropagation();
       openSearch();
     };
   }
 
-  // 2. Event Listener untuk Shortcut Keyboard (CMD+K atau CTRL+K)
-  document.addEventListener("keydown", (e) => {
-    // Mendeteksi Cmd+K (Mac) atau Ctrl+K (Windows/Linux)
-    if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-      e.preventDefault(); // Mencegah browser membuka search default atau aksi lain
-      openSearch();
-    }
-
-    // Menutup dengan tombol Escape
-    if (e.key === "Escape") {
-      closeSearch();
-    }
-  });
-
-  // 3. Klik di luar modal untuk menutup
   if (searchModal) {
     searchModal.onclick = () => closeSearch();
     const searchBox = searchModal.querySelector(".search-box");
@@ -160,4 +108,16 @@ document.addEventListener("DOMContentLoaded", () => {
       searchBox.onclick = (e) => e.stopPropagation();
     }
   }
+
+  document.addEventListener("keydown", (e) => {
+    // Shortcut CMD/CTRL + K
+    if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+      e.preventDefault();
+      openSearch();
+    }
+    // Escape untuk tutup
+    if (e.key === "Escape") {
+      closeSearch();
+    }
+  });
 });
