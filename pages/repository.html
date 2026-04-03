@@ -97,11 +97,16 @@
     </button>
   </div>
 
-  <!-- Satu-satunya grid yang dipakai: diisi JS dari GitHub API -->
-  <div class="repo-grid" id="repo-container">
+  <!-- repo-grid dibungkus oleh #repo-container -->
+  <div id="repo-container" class="repo-grid">
     <p style="text-align: center; grid-column: 1/-1;">
       Fetching repositories from GitHub...
     </p>
+  </div>
+
+  <!-- container pagination di bawah repo-grid -->
+  <div id="pagination" class="pagination-container">
+    <!-- tombol pagination akan di-generate lewat JS -->
   </div>
 </main>
 

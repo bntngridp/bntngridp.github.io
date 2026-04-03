@@ -1,9 +1,9 @@
 /**
  * script.js - Bintang Ridwan Pribadi Portfolio
- * Menangani: Theme Toggle (Persistence), Sticky Header, Mobile Menu, Search Modal, Portfolio Modal & Repository Page
+ * Final Version: Friday, April 3, 2026
  */
 
-// 1. Terapkan tema seawal mungkin (hindari flashing)
+// --- 1. THEME MANAGEMENT (SINKRONISASI AWAL) ---
 function applyTheme() {
   const savedTheme = localStorage.getItem("theme");
   const icon = document.querySelector("#theme-toggle i");
@@ -16,63 +16,109 @@ function applyTheme() {
     if (icon) icon.classList.replace("ri-sun-line", "ri-moon-line");
   }
 }
-
 applyTheme();
 
-// STATE GLOBAL REPO
+// --- 2. GLOBAL STATE UNTUK REPOSITORY ---
 let allRepos = [];
 let filteredRepos = [];
+let currentPage = 1;
+const reposPerPage = 9; // Menampilkan 6 repo per halaman
 
-// RENDER REPOS
+// --- 3. REPOSITORY FUNCTIONS (FILTER, SORT, PAGINATION) ---
+
 function renderRepos() {
   const container = document.getElementById("repo-container");
+  const paginationContainer = document.getElementById("pagination");
   if (!container) return;
 
-  if (!filteredRepos.length) {
-    container.innerHTML =
-      '<p style="text-align:center; grid-column:1/-1;">No repositories found.</p>';
+  if (filteredRepos.length === 0) {
+    container.innerHTML = '<p style="text-align:center; grid-column:1/-1; padding: 50px 0;">No repositories found matching your criteria.</p>';
+    if (paginationContainer) paginationContainer.innerHTML = "";
     return;
   }
 
+  // Kalkulasi Pagination
+  const startIndex = (currentPage - 1) * reposPerPage;
+  const endIndex = startIndex + reposPerPage;
+  const paginatedItems = filteredRepos.slice(startIndex, endIndex);
+
   container.innerHTML = "";
-  filteredRepos.forEach((repo, index) => {
+  paginatedItems.forEach((repo, index) => {
     const updatedAt = new Date(repo.updated_at).toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
+      month: "short", day: "numeric", year: "numeric",
     });
 
     container.innerHTML += `
-      <div class="repo-card" data-aos="fade-up" data-aos-delay="${index * 50}">
-        <a href="${repo.html_url}" target="_blank">
-          <div class="repo-title">
-            <i class="ri-git-repository-line"></i> ${repo.name}
-          </div>
-          <p class="repo-desc">
-            ${repo.description || "No description available for this repository."}
-          </p>
-        </a>
-        <div class="repo-meta">
-          <span><i class="ri-time-line"></i> Updated ${updatedAt}</span>
-          <span class="lang-tag">${repo.language || "Plain"}</span>
-        </div>
-      </div>
-    `;
+            <div class="repo-card" data-aos="fade-up" data-aos-delay="${index * 50}">
+                <a href="${repo.html_url}" target="_blank">
+                    <div class="repo-title">
+                        <i class="ri-git-repository-line"></i> ${repo.name}
+                    </div>
+                    <p class="repo-desc">${repo.description || "No description available for this repository."}</p>
+                </a>
+                <div class="repo-meta">
+                    <span><i class="ri-time-line"></i> Updated ${updatedAt}</span>
+                    <span class="lang-tag">${repo.language || "Plain Text"}</span>
+                </div>
+            </div>
+        `;
   });
 
+  renderPagination();
   if (window.AOS) AOS.refresh();
 }
 
-// FILTER + SORT REPOS
-function applyRepoFilters() {
-  if (!allRepos.length) return;
+function renderPagination() {
+  const paginationContainer = document.getElementById("pagination");
+  if (!paginationContainer) return;
 
+  const totalPages = Math.ceil(filteredRepos.length / reposPerPage);
+  paginationContainer.innerHTML = "";
+
+  if (totalPages <= 1) return;
+
+  // Tombol Previous
+  const prevBtn = document.createElement("button");
+  prevBtn.className = "page-btn";
+  prevBtn.innerHTML = "<";
+  prevBtn.disabled = currentPage === 1;
+  prevBtn.onclick = () => { currentPage--; renderRepos(); scrollRepoTop(); };
+  paginationContainer.appendChild(prevBtn);
+
+  // Tombol Angka
+  for (let i = 1; i <= totalPages; i++) {
+    const pageBtn = document.createElement("button");
+    pageBtn.className = `page-btn ${i === currentPage ? "active" : ""}`;
+    pageBtn.innerText = i;
+    pageBtn.onclick = () => {
+      currentPage = i;
+      renderRepos();
+      scrollRepoTop();
+    };
+    paginationContainer.appendChild(pageBtn);
+  }
+
+  // Tombol Next
+  const nextBtn = document.createElement("button");
+  nextBtn.className = "page-btn";
+  nextBtn.innerHTML = ">";
+  nextBtn.disabled = currentPage === totalPages;
+  nextBtn.onclick = () => { currentPage++; renderRepos(); scrollRepoTop(); };
+  paginationContainer.appendChild(nextBtn);
+}
+
+function scrollRepoTop() {
+  const header = document.querySelector(".repo-header");
+  if (header) window.scrollTo({ top: header.offsetHeight + 100, behavior: 'smooth' });
+}
+
+function applyRepoFilters() {
   const searchInput = document.getElementById("repo-search-input");
   const langSelect = document.getElementById("repo-language-filter");
   const sortSelect = document.getElementById("repo-sort-filter");
 
   const searchTerm = (searchInput?.value || "").toLowerCase();
-  const selectedLang = (langSelect?.value || "all").toLowerCase();
+  const selectedLang = langSelect?.value || "all";
   const sortMode = sortSelect?.value || "updated";
 
   filteredRepos = allRepos.filter((repo) => {
@@ -81,11 +127,12 @@ function applyRepoFilters() {
     const lang = (repo.language || "Plain").toLowerCase();
 
     const matchesSearch = name.includes(searchTerm) || desc.includes(searchTerm);
-    const matchesLang = selectedLang === "all" ? true : lang === selectedLang;
+    const matchesLang = (selectedLang === "all") ? true : (lang === selectedLang.toLowerCase());
 
     return matchesSearch && matchesLang;
   });
 
+  // Sorting Logic
   filteredRepos.sort((a, b) => {
     if (sortMode === "stars") {
       return (b.stargazers_count || 0) - (a.stargazers_count || 0);
@@ -93,46 +140,37 @@ function applyRepoFilters() {
     return new Date(b.updated_at) - new Date(a.updated_at);
   });
 
+  currentPage = 1; // Reset ke page 1 setiap filter berubah
   renderRepos();
 }
 
-// DATA PORTFOLIO MODAL
+// --- 4. PORTFOLIO MODAL DATA ---
 const projectData = {
   pmi: {
     tag: "Laravel • 2023",
     title: "Financial and Management for PMI",
-    desc: "Sistem ini dibangun untuk mendigitalisasi pencatatan keuangan manual...",
-    arch: "Menggunakan Service-Repository Pattern...",
+    desc: "Sistem ini dibangun untuk mendigitalisasi pencatatan keuangan manual. Fokus utama pada keamanan transaksi dan validasi data hibah yang ketat.",
+    arch: "Menerapkan Service-Repository Pattern untuk memisahkan Business Logic dari Eloquent, memastikan kode bersih dan testable.",
     erd: "../img/port-1.jpg",
-    techLogos: [
-      "../img/tech/laravel.svg",
-      "../img/tech/mysql.svg",
-      "../img/tech/php.svg"
-    ],
+    techLogos: ["../img/tech/laravel.svg", "../img/tech/mysql.svg", "../img/tech/php.svg"],
     githubUrl: "https://github.com/guanshiyin28/HackerRank"
   },
   telu: {
     tag: "Flutter • 2024",
     title: "My Tel-U Traffic Status",
-    desc: "Aplikasi mobile untuk monitoring kepadatan lalu lintas...",
-    arch: "Menerapkan Clean Architecture...",
+    desc: "Aplikasi mobile real-time untuk monitoring kepadatan lalu lintas di lingkungan kampus Telkom University.",
+    arch: "Menerapkan Clean Architecture dengan state management Provider dan integrasi Firebase Cloud Messaging.",
     erd: "../img/port-2.jpg",
-    techLogos: [
-      "../img/tech/flutter.svg",
-      "../img/tech/firebase.svg"
-    ],
-    githubUrl: ""
+    techLogos: ["../img/tech/flutter.svg", "../img/tech/firebase.svg", "../img/tech/dart.svg"],
+    githubUrl: "" // Kosongkan jika tidak ada github
   },
   balok: {
     tag: "Kotlin • 2023",
     title: "Volume Balok Simple App",
-    desc: "Aplikasi Android sederhana untuk menghitung volume balok...",
-    arch: "Menggunakan arsitektur sederhana dengan Activity tunggal...",
+    desc: "Aplikasi Android native untuk kalkulasi matematis volume bangun ruang balok secara instan.",
+    arch: "Menggunakan pola MVVM (Model-View-ViewModel) dasar untuk pemisahan data kalkulasi dengan UI Android.",
     erd: "../img/port-3.jpg",
-    techLogos: [
-      "../img/tech/kotlin.svg",
-      "../img/tech/android.svg"
-    ],
+    techLogos: ["../img/tech/kotlin.svg", "../img/tech/android.svg"],
     githubUrl: ""
   }
 };
@@ -147,25 +185,18 @@ function openProject(id) {
   document.getElementById("m-arch").innerText = data.arch;
   document.getElementById("m-erd").src = data.erd;
 
+  // Render Tech Logos
   const techContainer = document.getElementById("m-tech");
   techContainer.innerHTML = "";
-  data.techLogos.forEach((logoPath) => {
-    techContainer.innerHTML += `
-      <div class="tech-logo-item" title="Technology">
-        <img src="${logoPath}" alt="tech">
-      </div>
-    `;
+  data.techLogos.forEach(logo => {
+    techContainer.innerHTML += `<div class="tech-logo-item"><img src="${logo}" alt="tech"></div>`;
   });
 
+  // Render GitHub Button
   const githubContainer = document.getElementById("github-link-container");
-  githubContainer.innerHTML = "";
-  if (data.githubUrl) {
-    githubContainer.innerHTML = `
-      <a href="${data.githubUrl}" target="_blank" class="github-modal-btn">
-        <i class="ri-github-fill"></i> View on GitHub
-      </a>
-    `;
-  }
+  githubContainer.innerHTML = data.githubUrl
+      ? `<a href="${data.githubUrl}" target="_blank" class="github-modal-btn"><i class="ri-github-fill"></i> View on GitHub</a>`
+      : "";
 
   const modal = document.getElementById("project-modal");
   if (modal) {
@@ -182,35 +213,30 @@ function closeProject() {
   }
 }
 
-// SATU DOMContentLoaded
+// --- 5. INITIALIZATION ON DOMContentLoaded ---
 document.addEventListener("DOMContentLoaded", () => {
-  applyTheme(); // sinkron lagi setelah DOM siap
+  applyTheme();
 
-  // THEME TOGGLE
+  // Theme Toggle Handler
   const themeToggle = document.getElementById("theme-toggle");
   if (themeToggle) {
-    themeToggle.addEventListener("click", () => {
+    themeToggle.onclick = () => {
       document.body.classList.toggle("light-mode");
       const isLight = document.body.classList.contains("light-mode");
       localStorage.setItem("theme", isLight ? "light" : "dark");
-
       const icon = themeToggle.querySelector("i");
-      if (icon) {
-        if (isLight) icon.classList.replace("ri-moon-line", "ri-sun-line");
-        else icon.classList.replace("ri-sun-line", "ri-moon-line");
-      }
-    });
+      if (isLight) icon.classList.replace("ri-moon-line", "ri-sun-line");
+      else icon.classList.replace("ri-sun-line", "ri-moon-line");
+    };
   }
 
-  // STICKY HEADER
-  const header = document.querySelector("header");
-  if (header) {
-    window.addEventListener("scroll", () => {
-      header.classList.toggle("sticky", window.scrollY > 80);
-    });
-  }
+  // Sticky Header
+  window.onscroll = () => {
+    const navbar = document.getElementById("navbar");
+    if (navbar) navbar.classList.toggle("sticky", window.scrollY > 80);
+  };
 
-  // MOBILE MENU
+  // Mobile Menu
   const menuIcon = document.querySelector("#menu-icon");
   const navlist = document.querySelector(".navlist");
   if (menuIcon && navlist) {
@@ -218,126 +244,70 @@ document.addEventListener("DOMContentLoaded", () => {
       menuIcon.classList.toggle("bx-x");
       navlist.classList.toggle("active");
     };
-    window.addEventListener("scroll", () => {
-      menuIcon.classList.remove("bx-x");
-      navlist.classList.remove("active");
-    });
-    navlist.querySelectorAll("a").forEach((link) => {
-      link.onclick = () => {
-        menuIcon.classList.remove("bx-x");
-        navlist.classList.remove("active");
-      };
-    });
   }
 
-  // SEARCH MODAL + SHORTCUT
+  // Search Modal (Cmd+K)
   const searchModal = document.getElementById("search-modal");
   const searchBtn = document.getElementById("search-btn");
-  const searchInput = searchModal ? searchModal.querySelector("input") : null;
-
   const openSearch = () => {
-    if (!searchModal) return;
-    searchModal.classList.add("active");
-    setTimeout(() => searchInput && searchInput.focus(), 100);
+    searchModal?.classList.add("active");
+    setTimeout(() => searchModal?.querySelector("input")?.focus(), 100);
   };
-  const closeSearch = () => {
-    if (searchModal) searchModal.classList.remove("active");
-  };
+  const closeSearch = () => searchModal?.classList.remove("active");
 
-  if (searchBtn && searchModal) {
-    searchBtn.onclick = (e) => {
-      e.stopPropagation();
-      openSearch();
-    };
-  }
+  if (searchBtn) searchBtn.onclick = (e) => { e.stopPropagation(); openSearch(); };
   if (searchModal) {
-    const searchBox = searchModal.querySelector(".search-box");
     searchModal.onclick = () => closeSearch();
-    if (searchBox) {
-      searchBox.onclick = (e) => e.stopPropagation();
-    }
+    searchModal.querySelector(".search-box").onclick = (e) => e.stopPropagation();
   }
+
   document.addEventListener("keydown", (e) => {
-    if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-      e.preventDefault();
-      openSearch();
-    }
-    if (e.key === "Escape") {
-      closeSearch();
-      closeProject();
-    }
+    if ((e.metaKey || e.ctrlKey) && e.key === "k") { e.preventDefault(); openSearch(); }
+    if (e.key === "Escape") { closeSearch(); closeProject(); }
   });
 
-  // PORTFOLIO MODAL (close handlers)
-  const modal = document.getElementById("project-modal");
-  if (modal) {
-    const closeBtn = modal.querySelector(".close-modal");
-    if (closeBtn) closeBtn.addEventListener("click", closeProject);
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) closeProject();
-    });
-  }
-
-  // REPOSITORY PAGE
-  const repoContainer = document.getElementById("repo-container");
-  if (repoContainer) {
+  // --- REPOSITORY API FETCH ---
+  const repoGrid = document.getElementById("repo-container");
+  if (repoGrid) {
     const username = "bintangridwanp";
 
     async function fetchGitHubData() {
       try {
-        const response = await fetch(
-          `https://api.github.com/users/${username}/repos?sort=updated&per_page=50`
-        );
+        const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
         const repos = await response.json();
 
         if (repos.message === "Not Found") {
-          repoContainer.innerHTML = "<p>User not found.</p>";
+          repoGrid.innerHTML = "<p>GitHub user not found.</p>";
           return;
         }
 
-        allRepos = repos.slice();
-        filteredRepos = repos.slice();
+        allRepos = repos;
+        filteredRepos = repos;
 
-        let totalStars = 0;
-        let totalForks = 0;
-        repos.forEach((repo) => {
-          totalStars += repo.stargazers_count || 0;
-          totalForks += repo.forks_count || 0;
-        });
+        // Update Stats
+        let stars = 0, forks = 0;
+        repos.forEach(r => { stars += r.stargazers_count; forks += r.forks_count; });
 
-        const totalReposEl = document.getElementById("total-repos");
-        const totalStarsEl = document.getElementById("total-stars");
-        const totalForksEl = document.getElementById("total-forks");
-        if (totalReposEl) totalReposEl.innerText = repos.length;
-        if (totalStarsEl) totalStarsEl.innerText = totalStars;
-        if (totalForksEl) totalForksEl.innerText = totalForks;
+        document.getElementById("total-repos").innerText = repos.length;
+        document.getElementById("total-stars").innerText = stars;
+        document.getElementById("total-forks").innerText = forks;
 
         renderRepos();
-      } catch (error) {
-        console.error("Error fetching GitHub data:", error);
-        repoContainer.innerHTML =
-          "<p>Failed to load repositories. Please try again later.</p>";
+      } catch (err) {
+        repoGrid.innerHTML = "<p>Error loading repositories.</p>";
       }
     }
-
     fetchGitHubData();
 
-    const searchInputEl = document.getElementById("repo-search-input");
-    const langSelectEl = document.getElementById("repo-language-filter");
-    const sortSelectEl = document.getElementById("repo-sort-filter");
-    const resetBtn = document.getElementById("repo-reset-btn");
-
-    if (searchInputEl) searchInputEl.addEventListener("input", applyRepoFilters);
-    if (langSelectEl) langSelectEl.addEventListener("change", applyRepoFilters);
-    if (sortSelectEl) sortSelectEl.addEventListener("change", applyRepoFilters);
-    if (resetBtn) {
-      resetBtn.addEventListener("click", () => {
-        if (searchInputEl) searchInputEl.value = "";
-        if (langSelectEl) langSelectEl.value = "all";
-        if (sortSelectEl) sortSelectEl.value = "updated";
-        filteredRepos = allRepos.slice();
-        renderRepos();
-      });
-    }
+    // Event Listeners for Filters
+    document.getElementById("repo-search-input")?.addEventListener("input", applyRepoFilters);
+    document.getElementById("repo-language-filter")?.addEventListener("change", applyRepoFilters);
+    document.getElementById("repo-sort-filter")?.addEventListener("change", applyRepoFilters);
+    document.getElementById("repo-reset-btn")?.addEventListener("click", () => {
+      document.getElementById("repo-search-input").value = "";
+      document.getElementById("repo-language-filter").value = "all";
+      document.getElementById("repo-sort-filter").value = "updated";
+      applyRepoFilters();
+    });
   }
 });

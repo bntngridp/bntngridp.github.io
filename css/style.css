@@ -1380,3 +1380,50 @@ body.light-mode .stat-item h2 {
     font-size: 2.8rem;
   }
 }
+
+/* --- Pagination Styling --- */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.page-btn {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 51, 51, 0.1);
+  color: var(--text-color);
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.page-btn:hover:not(.active) {
+  border-color: var(--main-color);
+  background: rgba(139, 0, 0, 0.1);
+}
+
+.page-btn.active {
+  background: var(--main-color);
+  color: white;
+  border-color: var(--main-color);
+  box-shadow: 0 5px 15px rgba(255, 51, 51, 0.3);
+}
+
+.page-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Tambahkan ke style filter agar tombol reset lebih rapi */
+#repo-reset-btn {
+  cursor: pointer;
+}
