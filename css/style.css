@@ -1427,3 +1427,15 @@ body.light-mode .stat-item h2 {
 #repo-reset-btn {
   cursor: pointer;
 }
+
+.pdf-icon a {
+  color: var(--main-color); /* Atau sesuai warna PDF biasanya (merah) */
+  font-size: 2.5rem;
+  transition: 0.3s;
+  display: inline-block;
+}
+
+.pdf-icon a:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 10px rgba(255, 51, 51, 0.4));
+}
