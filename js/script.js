@@ -102,10 +102,68 @@ function applyRepoFilters() {
 const allCertifications = [
   {
     title: "Cloud Practitioner Essentials",
+    tag: "dicoding",
+    img: "../img/certifications/dicoding/Cloud Practitioner Essentials (Belajar Dasar AWS Cloud).jpg",
+    desc: "Study the fundamentals of cloud computing using AWS, from core cloud computing concepts to the implementation of generative AI on AWS."
+  },
+  {
+    title: "Belajar Dasar Pemrograman JavaScript",
+    tag: "dicoding",
+    img: "../img/certifications/dicoding/Belajar Dasar Pemrograman JavaScript.jpg",
+    desc: "Study the fundamentals of JavaScript, from basic concepts, syntax, and ES6 features to the concept of automated testing using popular frameworks."
+  },
+  {
+    title: "Memulai Pemrograman dengan Haskell",
+    tag: "aws",
+    img: "../img/certifications/dicoding/Memulai Pemrograman dengan Haskell.jpg",
+    desc: "Learn Haskell programming, a purely functional language designed for education, research, and industrial applications."
+  },{
+    title: "Belajar Dasar Git dengan Github.jpg",
+    tag: "aws",
+    img: "../img/certifications/dicoding/Belajar Dasar Git dengan Github.jpg",
+    desc: "Learn how to manage data or code using Git with GitHub, from the basics of Git to collaborating with a team."
+  },{
+    title: "Belajar Dasar Pemrograman Web",
+    tag: "aws",
+    img: "../img/certifications/dicoding/Belajar Dasar Pemrograman Web.jpg",
+    desc: "Study the basic components of HTML and CSS, which are the main foundation for becoming a front-end web developer."
+  },
+  {
+    title: "Belajar Membuat Front-End Web untuk Pemula",
+    tag: "aws",
+    img: "../img/certifications/dicoding/Belajar Membuat Front-End Web untuk Pemula.jpg",
+    desc: "Study the fundamentals of cloud computing using AWS infrastructure."
+  },
+  {
+    title: "Memulai Dasar Pemrograman untuk Menjadi Pengembang Software",
+    tag: "aws",
+    img: "../img/certifications/dicoding/Memulai Dasar Pemrograman untuk Menjadi Pengembang Software.jpg",
+    desc: "Study the fundamentals of cloud computing using AWS infrastructure."
+  },
+  {
+    title: "Belajar Dasar AI",
+    tag: "aws",
+    img: "../img/certifications/dicoding/Belajar Dasar AI.jpg",
+    desc: "Understand the fundamentals of Artificial Intelligence and its subfields, including Machine Learning and Deep Learning."
+  },
+  {
+    title: "Cloud Practitioner Essentials",
+    tag: "aws",
+    img: "../img/certifications/dicoding/Cloud Practitioner Essentials (Belajar Dasar AWS Cloud).jpg",
+    desc: "Study the fundamentals of cloud computing using AWS infrastructure."
+  },{
+    title: "Cloud Practitioner Essentials",
+    tag: "aws",
+    img: "../img/certifications/dicoding/Cloud Practitioner Essentials (Belajar Dasar AWS Cloud).jpg",
+    desc: "Study the fundamentals of cloud computing using AWS infrastructure."
+  },{
+    title: "Cloud Practitioner Essentials",
     tag: "aws",
     img: "../img/certifications/dicoding/Cloud Practitioner Essentials (Belajar Dasar AWS Cloud).jpg",
     desc: "Study the fundamentals of cloud computing using AWS infrastructure."
   },
+
+
   {
     title: "Google UI/UX Design",
     tag: "google",

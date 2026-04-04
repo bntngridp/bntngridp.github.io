@@ -137,6 +137,12 @@ section {
   margin: 0 auto;
 }
 
+.cert-header {
+  margin-top: -100px; /* Gunakan margin negatif jika ingin lebih rapat lagi */
+  text-align: center;
+  margin-bottom: 40px;
+}
+
 /* hero section (index) */
 .hero {
   min-height: 100vh;
@@ -144,6 +150,8 @@ section {
   flex-direction: column;
   justify-content: center;
 }
+
+
 .hero-wrapper {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
