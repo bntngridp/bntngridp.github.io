@@ -1439,3 +1439,78 @@ body.light-mode .stat-item h2 {
   transform: scale(1.1);
   filter: drop-shadow(0 0 10px rgba(255, 51, 51, 0.4));
 }
+
+/* Perbaikan Grid: Paksa 3 Kolom di Desktop */
+@media (min-width: 1024px) {
+  .cert-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Perbaikan Gambar Sertifikat agar tidak kepotong */
+.cert-img-box {
+  width: 100%;
+  height: 200px; /* Sesuaikan tinggi agar proporsional */
+  background: #f0f0f0;
+  cursor: zoom-in;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cert-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Ganti dari cover ke contain agar dokumen utuh */
+  padding: 5px; /* Memberi ruang napas agar pinggiran tidak nempel */
+}
+
+/* Lightbox Zoom Style */
+.modal-img-zoom {
+  max-width: 90%;
+  max-height: 85vh;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+  transform: scale(0.9);
+  transition: 0.3s ease;
+}
+
+.modal-overlay.active .modal-img-zoom {
+  transform: scale(1);
+}
+
+.cert-filters {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.filter-tag {
+  padding: 8px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 51, 51, 0.2);
+  color: var(--text-color);
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.filter-tag:hover, .filter-tag.active {
+  background: var(--main-color);
+  color: white;
+  border-color: var(--main-color);
+  box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
+}
+
+/* Memperbaiki tinggi gambar agar seragam */
+.cert-img-box {
+  width: 100%;
+  height: 200px;
+  background: #f8f8f8; /* Bagus untuk background sertifikat putih */
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: zoom-in;
+}

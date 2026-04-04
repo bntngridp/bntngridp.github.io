@@ -53,44 +53,32 @@
 </div>
 
 <main class="page-content">
-  <section class="cert-header" data-aos="fade-down">
-    <span>My Achievements</span>
-    <h1>Professional Certifications</h1>
-    <p>Validated expertise through recognized institutions and industry leaders.</p>
-  </section>
+  <main class="page-content">
+    <section class="cert-header" data-aos="fade-down">
+      <span>My Achievements</span>
+      <h1>Professional Certifications</h1>
+      <p>Validated expertise through recognized institutions and industry leaders.</p>
+    </section>
 
-  <section class="cert-grid">
-    <div class="cert-card" data-aos="fade-up" data-aos-delay="100">
-      <div class="cert-img-box">
-        <img src="../img/cert-1.jpg" alt="Certification 1">
-      </div>
-      <div class="cert-info">
-        <h3><i class="ri-star-smile-line"></i> Laravel Backend Dev</h3>
-        <p>Advanced backend development with Laravel framework, database architecture, and RESTful API.</p>
-      </div>
+    <div class="cert-filters" data-aos="fade-up">
+      <button class="filter-tag active" onclick="filterCerts('all')">All</button>
+      <button class="filter-tag" onclick="filterCerts('dicoding')">Dicoding</button>
+      <button class="filter-tag" onclick="filterCerts('google')">Google</button>
+      <button class="filter-tag" onclick="filterCerts('aws')">AWS</button>
     </div>
 
-    <div class="cert-card" data-aos="fade-up" data-aos-delay="200">
-      <div class="cert-img-box">
-        <img src="../img/cert-2.jpg" alt="Certification 2">
-      </div>
-      <div class="cert-info">
-        <h3><i class="ri-star-smile-line"></i> Google UI/UX Design</h3>
-        <p>Comprehensive user experience design, wireframing, and interactive prototyping.</p>
-      </div>
+    <div class="cert-grid" id="cert-container">
     </div>
 
-    <div class="cert-card" data-aos="fade-up" data-aos-delay="300">
-      <div class="cert-img-box">
-        <img src="../img/cert-3.jpg" alt="Certification 3">
-      </div>
-      <div class="cert-info">
-        <h3><i class="ri-star-smile-line"></i> Flutter Mobile Expert</h3>
-        <p>Cross-platform mobile application development with Dart and Flutter framework.</p>
-      </div>
+    <div id="cert-pagination" class="pagination-container"></div>
+
+    <div id="cert-lightbox" class="modal-overlay" onclick="closeZoom()">
+      <span class="close-modal">&times;</span>
+      <img class="modal-img-zoom" id="zoomed-img">
     </div>
-  </section>
+  </main>
 </main>
+
 
 <footer class="footer">
   <div class="footer-line"></div>
