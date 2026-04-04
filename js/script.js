@@ -101,7 +101,7 @@ function applyRepoFilters() {
 // --- 4. CERTIFICATION FUNCTIONS ---
 const allCertifications = [
   {
-    title: "Cloud Practitioner Essentials",
+    title: "Cloud Practitioner Essentials (Belajar Dasar AWS Cloud)",
     tag: "dicoding",
     img: "../img/certifications/dicoding/Cloud Practitioner Essentials (Belajar Dasar AWS Cloud).jpg",
     desc: "Study the fundamentals of cloud computing using AWS, from core cloud computing concepts to the implementation of generative AI on AWS."
@@ -114,51 +114,51 @@ const allCertifications = [
   },
   {
     title: "Memulai Pemrograman dengan Haskell",
-    tag: "aws",
+    tag: "dicoding",
     img: "../img/certifications/dicoding/Memulai Pemrograman dengan Haskell.jpg",
     desc: "Learn Haskell programming, a purely functional language designed for education, research, and industrial applications."
   },{
-    title: "Belajar Dasar Git dengan Github.jpg",
-    tag: "aws",
-    img: "../img/certifications/dicoding/Belajar Dasar Git dengan Github.jpg",
+    title: "Belajar Dasar Git dengan Github",
+    tag: "dicoding",
+    img: "../img/certifications/dicoding/Belajar Dasar Git dengan GitHub.jpg",
     desc: "Learn how to manage data or code using Git with GitHub, from the basics of Git to collaborating with a team."
   },{
     title: "Belajar Dasar Pemrograman Web",
-    tag: "aws",
+    tag: "dicoding",
     img: "../img/certifications/dicoding/Belajar Dasar Pemrograman Web.jpg",
     desc: "Study the basic components of HTML and CSS, which are the main foundation for becoming a front-end web developer."
   },
   {
     title: "Belajar Membuat Front-End Web untuk Pemula",
-    tag: "aws",
+    tag: "dicoding",
     img: "../img/certifications/dicoding/Belajar Membuat Front-End Web untuk Pemula.jpg",
     desc: "Study the fundamentals of cloud computing using AWS infrastructure."
   },
   {
     title: "Memulai Dasar Pemrograman untuk Menjadi Pengembang Software",
-    tag: "aws",
+    tag: "dicoding",
     img: "../img/certifications/dicoding/Memulai Dasar Pemrograman untuk Menjadi Pengembang Software.jpg",
     desc: "Study the fundamentals of cloud computing using AWS infrastructure."
   },
   {
     title: "Belajar Dasar AI",
-    tag: "aws",
+    tag: "dicoding",
     img: "../img/certifications/dicoding/Belajar Dasar AI.jpg",
     desc: "Understand the fundamentals of Artificial Intelligence and its subfields, including Machine Learning and Deep Learning."
   },
   {
+    title: "Belajar Dasar Structured Query Language (SQL)",
+    tag: "dicoding",
+    img: "../img/certifications/dicoding/Belajar Dasar Structured Query Language (SQL).jpg",
+    desc: "Study the fundamental concepts of Structured Query Language (SQL), from an introduction to data and databases to practicing basic queries."
+  },{
     title: "Cloud Practitioner Essentials",
-    tag: "aws",
+    tag: "dicoding",
     img: "../img/certifications/dicoding/Cloud Practitioner Essentials (Belajar Dasar AWS Cloud).jpg",
     desc: "Study the fundamentals of cloud computing using AWS infrastructure."
   },{
     title: "Cloud Practitioner Essentials",
-    tag: "aws",
-    img: "../img/certifications/dicoding/Cloud Practitioner Essentials (Belajar Dasar AWS Cloud).jpg",
-    desc: "Study the fundamentals of cloud computing using AWS infrastructure."
-  },{
-    title: "Cloud Practitioner Essentials",
-    tag: "aws",
+    tag: "dicoding",
     img: "../img/certifications/dicoding/Cloud Practitioner Essentials (Belajar Dasar AWS Cloud).jpg",
     desc: "Study the fundamentals of cloud computing using AWS infrastructure."
   },
@@ -192,7 +192,7 @@ function renderCertifications() {
     container.innerHTML += `
             <div class="cert-card" data-aos="fade-up" data-aos-delay="${index * 50}">
                 <div class="cert-img-box" onclick="zoomImg(this)">
-                    <img src="${cert.img}" alt="${cert.title}">
+                    <img src="${cert.img}" alt="${cert.title}" loading="lazy">
                 </div>
                 <div class="cert-info">
                     <h3></i> ${cert.title}</h3>
