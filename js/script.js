@@ -3,7 +3,6 @@
  * Final Version: Saturday, April 4, 2026
  */
 
-// --- 1. THEME MANAGEMENT ---
 function applyTheme() {
   const savedTheme = localStorage.getItem("theme");
   const icon = document.querySelector("#theme-toggle i");
@@ -18,7 +17,6 @@ function applyTheme() {
 }
 applyTheme();
 
-// --- 2. GLOBAL STATE ---
 // Repository State
 let allRepos = [];
 let filteredRepos = [];
@@ -30,7 +28,7 @@ let currentCertFilter = 'all';
 let certPage = 1;
 const certsPerPage = 9;
 
-// --- 3. REPOSITORY FUNCTIONS (GitHub API) ---
+// Repository function for github
 function renderRepos() {
   const container = document.getElementById("repo-container");
   const paginationContainer = document.getElementById("pagination");
@@ -66,6 +64,7 @@ function renderRepos() {
   if (window.AOS) AOS.refresh();
 }
 
+//
 function renderRepoPagination() {
   const container = document.getElementById("pagination");
   if (!container) return;
@@ -82,6 +81,7 @@ function renderRepoPagination() {
   }
 }
 
+//
 function applyRepoFilters() {
   const searchTerm = document.getElementById("repo-search-input")?.value.toLowerCase() || "";
   const selectedLang = document.getElementById("repo-language-filter")?.value || "all";
@@ -98,7 +98,7 @@ function applyRepoFilters() {
   renderRepos();
 }
 
-// --- 4. CERTIFICATION FUNCTIONS ---
+// Certificate Function
 const allCertifications = [
   {
     title: "Cloud Practitioner Essentials (Belajar Dasar AWS Cloud)",
@@ -132,13 +132,13 @@ const allCertifications = [
     title: "Belajar Membuat Front-End Web untuk Pemula",
     tag: "dicoding",
     img: "../img/certifications/dicoding/Belajar Membuat Front-End Web untuk Pemula.jpg",
-    desc: "Study the fundamentals of cloud computing using AWS infrastructure."
+    desc: "Study topics such as DOM manipulation, events, and web storage to enhance the functionality and interactivity of your website."
   },
   {
     title: "Memulai Dasar Pemrograman untuk Menjadi Pengembang Software",
     tag: "dicoding",
     img: "../img/certifications/dicoding/Memulai Dasar Pemrograman untuk Menjadi Pengembang Software.jpg",
-    desc: "Study the fundamentals of cloud computing using AWS infrastructure."
+    desc: "Learn the steps to become a software developer, from the analysis and planning stages to software modification and documentation."
   },
   {
     title: "Belajar Dasar AI",
@@ -152,32 +152,37 @@ const allCertifications = [
     img: "../img/certifications/dicoding/Belajar Dasar Structured Query Language (SQL).jpg",
     desc: "Study the fundamental concepts of Structured Query Language (SQL), from an introduction to data and databases to practicing basic queries."
   },{
-    title: "Cloud Practitioner Essentials",
-    tag: "dicoding",
-    img: "../img/certifications/dicoding/Cloud Practitioner Essentials (Belajar Dasar AWS Cloud).jpg",
-    desc: "Study the fundamentals of cloud computing using AWS infrastructure."
-  },{
-    title: "Cloud Practitioner Essentials",
-    tag: "dicoding",
-    img: "../img/certifications/dicoding/Cloud Practitioner Essentials (Belajar Dasar AWS Cloud).jpg",
-    desc: "Study the fundamentals of cloud computing using AWS infrastructure."
+    title: "Finalist for UI/UX Competition in BASIC Challenge 2024",
+    tag: "competition",
+    img: "../img/certifications/competitions/Basic sibinus UI UX competition.jpg",
+    desc: "For Outstanding Participation as a Finalist in the UI/UX Competition at the Business and System Innovation Challenge 2024."
   },
-
-
   {
-    title: "Google UI/UX Design",
-    tag: "google",
-    img: "../img/cert-2.jpg",
-    desc: "Professional certificate for user experience design."
+    title: "Play It Competition 2024",
+    tag: "competition",
+    img: "../img/certifications/competitions/Play it competition UI_UX.jpg",
+    desc: "As a UI/UX Challenge participant in the national Play IT competition, organized by the Information Technology Department of Politeknik Negeri Malang 2024."
+  },
+  {
+    title: "Finalist SurabayaDev 2024",
+    tag: "competition",
+    img: "../img/certifications/competitions/Surabaya DEV 2024.jpg",
+    desc: "In recognition of achievement as a Finalist in the University UI/UX Competition, held during SurabayaDev’s 10th Anniversary 2024"
+  },
+  {
+    title: "Hack Fest 2024",
+    tag: "competition",
+    img: "../img/certifications/competitions/Hack fest 2024.jpg",
+    desc: "As a participant in HackFest 2024, a hackathon organized by GDSC Indonesia for university students to develop solutions based on the United Nations’ 17 SDGs."
   },
   {
     title: "Flutter Mobile Expert",
-    tag: "dicoding",
-    img: "../img/cert-3.jpg",
-    desc: "Deep dive into cross-platform mobile development."
+    tag: "competition",
+    img: "../img/certifications/competitions/It Festival 2025.jpg",
+    desc: "In recognition of participation in the Software Development Competition at IT Festival 2025, innovation in developing software solutions."
   }
-  // Tambahkan data sertifikat lainnya di sini...
-];
+
+  ];
 
 function renderCertifications() {
   const container = document.getElementById("cert-container");
@@ -220,6 +225,7 @@ function renderCertPagination(totalItems) {
   }
 }
 
+// Filter charts
 function filterCerts(tag) {
   currentCertFilter = tag;
   certPage = 1;
@@ -229,7 +235,7 @@ function filterCerts(tag) {
   renderCertifications();
 }
 
-// --- 5. UI UTILITIES (Zoom, Modal, Menu) ---
+// Lightbox for Certification Images
 function zoomImg(container) {
   const lightbox = document.getElementById('cert-lightbox');
   const zoomedImg = document.getElementById('zoomed-img');
@@ -239,13 +245,14 @@ function zoomImg(container) {
   document.body.style.overflow = 'hidden';
 }
 
+// Close Zoom
 function closeZoom() {
   const lightbox = document.getElementById('cert-lightbox');
   lightbox.classList.remove('active');
   setTimeout(() => { lightbox.style.display = 'none'; document.body.style.overflow = 'auto'; }, 300);
 }
 
-// --- 6. INITIALIZATION ---
+// Initialize AOS and Event Listeners
 document.addEventListener("DOMContentLoaded", () => {
   // Theme Toggle
   const themeBtn = document.getElementById("theme-toggle");
