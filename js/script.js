@@ -176,7 +176,7 @@ const allCertifications = [
     desc: "As a participant in HackFest 2024, a hackathon organized by GDSC Indonesia for university students to develop solutions based on the United Nations’ 17 SDGs."
   },
   {
-    title: "Flutter Mobile Expert",
+    title: "It Festival 2025",
     tag: "competition",
     img: "../img/certifications/competitions/It Festival 2025.jpg",
     desc: "In recognition of participation in the Software Development Competition at IT Festival 2025, innovation in developing software solutions."
