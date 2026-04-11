@@ -151,7 +151,14 @@ const allCertifications = [
     tag: "dicoding",
     img: "../img/certifications/dicoding/Belajar Dasar Structured Query Language (SQL).jpg",
     desc: "Study the fundamental concepts of Structured Query Language (SQL), from an introduction to data and databases to practicing basic queries."
-  },{
+  },
+  {
+    title: "Belajar Penerapan Data Science dengan Microsoft Fabric",
+    tag: "dicoding",
+    img: "../img/certifications/dicoding/Belajar Penerapan Data Science dengan Microsoft Fabric.jpg",
+    desc: "Study end-to-end data science in Microsoft Fabric, from data exploration and building machine learning models to deploying and monitoring results."
+  },
+  {
     title: "Finalist for UI/UX Competition in BASIC Challenge 2024",
     tag: "competition",
     img: "../img/certifications/competitions/Basic sibinus UI UX competition.jpg",
