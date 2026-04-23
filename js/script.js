@@ -159,6 +159,12 @@ const allCertifications = [
     desc: "Study end-to-end data science in Microsoft Fabric, from data exploration and building machine learning models to deploying and monitoring results."
   },
   {
+    title: "Belajar Membuat Aplikasi Web dengan React",
+    tag: "dicoding",
+    img: "../img/certifications/dicoding/Belajar Membuat Aplikasi Webdengan React.jpg",
+    desc: "Study the fundamental skills for building React applications, including elements, components, props, event handling, and state."
+  },
+  {
     title: "Finalist for UI/UX Competition in BASIC Challenge 2024",
     tag: "competition",
     img: "../img/certifications/competitions/Basic sibinus UI UX competition.jpg",
