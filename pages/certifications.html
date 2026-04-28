@@ -14,6 +14,7 @@
 </head>
 
 <body>
+<!-- ===== Header / Navbar ===== -->
 <header id="navbar">
   <div class="logo">
     <div class="logo-box">B</div>
@@ -39,6 +40,7 @@
   </div>
 </header>
 
+<!-- ===== Search Modal ===== -->
 <div class="search-modal" id="search-modal">
   <div class="search-box">
     <input type="text" placeholder="Type to search...">
@@ -52,41 +54,46 @@
   </div>
 </div>
 
+<!-- ===== Page Content ===== -->
 <main class="page-content">
-  <main class="page-content">
-    <section class="cert-header" data-aos="fade-down">
-      <span>My Achievements</span>
-      <h1>Professional Certifications</h1>
-      <p>Validated expertise through recognized institutions and industry leaders.</p>
-    </section>
+  <!-- ===== Header ===== -->
+  <section class="cert-header" data-aos="fade-down">
+    <span>My Achievements</span>
+    <h1>Professional Certifications</h1>
+    <p>Validated expertise through recognized institutions and industry leaders.</p>
+  </section>
 
-    <div class="cert-filters" data-aos="fade-up">
-      <button class="filter-tag active" onclick="filterCerts('all')">All</button>
-      <button class="filter-tag" onclick="filterCerts('dicoding')">Dicoding</button>
-      <button class="filter-tag" onclick="filterCerts('google')">Google</button>
-      <button class="filter-tag" onclick="filterCerts('aws')">AWS</button>
-      <button class="filter-tag" onclick="filterCerts('competition')">Competition</button>
+  <!-- ===== Filters ===== -->
+  <div class="cert-filters" data-aos="fade-up">
+    <button class="filter-tag active" onclick="filterCerts('all')">All</button>
+    <button class="filter-tag" onclick="filterCerts('dicoding')">Dicoding</button>
+    <button class="filter-tag" onclick="filterCerts('google')">Google</button>
+    <button class="filter-tag" onclick="filterCerts('aws')">AWS</button>
+    <button class="filter-tag" onclick="filterCerts('competition')">Competition</button>
 
-    </div>
+  </div>
 
-    <div class="cert-grid" id="cert-container">
-    </div>
+  <!-- ===== Grid ===== -->
+  <div class="cert-grid" id="cert-container">
+  </div>
 
-    <div id="cert-pagination" class="pagination-container"></div>
+  <!-- ===== Pagination ===== -->
+  <div id="cert-pagination" class="pagination-container"></div>
 
-    <div id="cert-lightbox" class="modal-overlay" onclick="closeZoom()">
-      <span class="close-modal">&times;</span>
-      <img class="modal-img-zoom" id="zoomed-img">
-    </div>
-  </main>
+  <!-- ===== Lightbox ===== -->
+  <div id="cert-lightbox" class="modal-overlay" onclick="closeZoom()">
+    <span class="close-modal">&times;</span>
+    <img class="modal-img-zoom" id="zoomed-img">
+  </div>
 </main>
 
-
+<!-- ===== Footer ===== -->
 <footer class="footer">
   <div class="footer-line"></div>
   <p>© 2026 Bintang Ridwan Pribadi. Verified Skills & Achievements.</p>
 </footer>
 
+<!-- ===== Scripts ===== -->
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
   AOS.init({ offset: 100, duration: 1000, once: true });

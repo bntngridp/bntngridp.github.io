@@ -8,7 +8,7 @@
   scroll-behavior: smooth;
 }
 
-/* variables */
+/* ===== Base & Theme Variables ===== */
 :root {
   --text-color: #e5e5e5;
   --bg-color: #1a0f0f;
@@ -20,7 +20,7 @@
   --p-font: 1rem;
 }
 
-/* light mode override */
+/* Light mode overrides */
 body.light-mode {
   --text-color: #111111;
   --bg-color: #ffffff;
@@ -31,13 +31,13 @@ body.light-mode {
   background: linear-gradient(180deg, #ffffff 0%, #f3f3f3 100%);
 }
 
-/* body with gradient background */
+/* ===== Global Layout ===== */
 body {
   color: var(--text-color);
   background: linear-gradient(180deg, #1a0f0f 0%, #0f0f0f 100%);
 }
 
-/* global header / navbar */
+/* ===== Header / Navbar ===== */
 header {
   position: fixed;
   width: 100%;
@@ -125,7 +125,7 @@ header.sticky {
   color: var(--text-color);
 }
 
-/* section & page container */
+/* ===== Sections & Containers ===== */
 section {
   padding: 120px 10% 80px;
 }
@@ -137,13 +137,7 @@ section {
   margin: 0 auto;
 }
 
-.cert-header {
-  margin-top: -100px; /* Gunakan margin negatif jika ingin lebih rapat lagi */
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-/* hero section (index) */
+/* ===== Hero (Index) ===== */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -257,37 +251,13 @@ section {
   font-size: 20px;
 }
 
-/* hero stats */
-.hero-stats {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 70px;
-  padding-top: 45px;
-  border-top: 1px solid rgba(128,128,128,0.3);
-}
+/* ===== Stats ===== */
 .stat-item h2 {
-  font-size: 3.2rem;
-  color: var(--main-color);
-}
-.stat-item p {
-  color: var(--other-color);
-  font-size: 1.05rem;
-}
-
-/* shared section helpers */
-.center-text {
-  text-align: center;
-  margin-bottom: 4rem;
-}
-.center-text h2 {
-  font-size: var(--h2-font);
-}
-.center-text span {
+  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
   color: var(--main-color);
 }
 
-/* services / generic cards */
+/* ===== Cards & Grids ===== */
 .box-grid,
 .services-content,
 .Portfolio-content {
@@ -353,7 +323,7 @@ section {
   color: var(--other-color);
 }
 
-/* --- Contact section (minimalist) from index inline CSS --- */
+/* ===== Contact (Index) ===== */
 .contact {
   padding: 100px 10% 120px;
   display: flex;
@@ -423,7 +393,7 @@ body.light-mode .skill-card-rect {
   border-color: #eee;
 }
 
-/* footer global */
+/* ===== Footer ===== */
 .footer {
   padding: 40px 10%;
   text-align: center;
@@ -451,7 +421,7 @@ body.light-mode .blog-card::before {
   background: radial-gradient(circle, rgba(139, 0, 0, 0.07) 0%, transparent 60%);
 }
 
-/* portfolio page cards */
+/* ===== Portfolio ===== */
 .portfolio-container {
   max-width: 1100px;
   margin: 0 auto;
@@ -533,7 +503,7 @@ body.light-mode .blog-card::before {
   border-radius: 20px;
 }
 
-/* CV page layout */
+/* ===== CV ===== */
 .cv-container {
   display: grid;
   grid-template-columns: 260px 1fr;
@@ -709,7 +679,7 @@ body.light-mode .cv-content {
   font-size: 0.95rem;
 }
 
-/* certifications page */
+/* ===== Certifications ===== */
 .cert-header {
   text-align: center;
   margin-bottom: 60px;
@@ -749,7 +719,7 @@ body.light-mode .cv-content {
 }
 .cert-img-box {
   width: 100%;
-  height: 220px;
+  height: 200px;
   border-radius: 16px;
   overflow: hidden;
   background: var(--second-bg-color);
@@ -778,7 +748,7 @@ body.light-mode .cv-content {
   font-size: 0.95rem;
 }
 
-/* blog page */
+/* ===== Blog ===== */
 .blog-header {
   text-align: center;
   margin-bottom: 60px;
@@ -847,7 +817,7 @@ body.light-mode .cv-content {
   font-size: 22px;
 }
 
-/* search modal */
+/* ===== Search Modal ===== */
 .search-modal {
   position: fixed;
   inset: 0;
@@ -1026,41 +996,392 @@ body.light-mode .search-box ul li a {
   font-size: 10px;
 }
 
-/* responsive */
+/* certification filters */
+.cert-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin: 20px 0 40px;
+}
+
+.filter-tag {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 51, 51, 0.2);
+  background: var(--second-bg-color);
+  color: var(--text-color);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.filter-tag:hover,
+.filter-tag.active {
+  background: var(--main-color);
+  color: #ffffff;
+  border-color: var(--main-color);
+}
+
+/* pagination buttons (certs + repo) */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 30px 0 10px;
+}
+
+.page-btn {
+  min-width: 40px;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 51, 51, 0.2);
+  background: var(--second-bg-color);
+  color: var(--text-color);
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.page-btn:hover,
+.page-btn.active {
+  background: var(--main-color);
+  color: #ffffff;
+  border-color: var(--main-color);
+}
+
+/* light mode */
+body.light-mode .filter-tag,
+body.light-mode .page-btn {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #111111;
+}
+
+body.light-mode .filter-tag:hover,
+body.light-mode .filter-tag.active,
+body.light-mode .page-btn:hover,
+body.light-mode .page-btn.active {
+  background: var(--main-color);
+  color: #ffffff;
+  border-color: var(--main-color);
+}
+
+/* ===== Responsive ===== */
+html {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  width: 100%;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+:where(section, .page-content, .cv-container) {
+  width: 100%;
+}
+
+section {
+  padding: clamp(90px, 10vw, 120px) clamp(4vw, 8vw, 10%) clamp(50px, 6vw, 80px);
+}
+
+.page-content,
+.cv-container {
+  padding-inline: clamp(4vw, 8vw, 10%);
+}
+
+.page-content {
+  padding-top: clamp(110px, 12vw, 150px);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* shared page headers */
+.page-header,
+.blog-header,
+.cert-header,
+.repo-header {
+  text-align: center;
+  margin-bottom: clamp(30px, 5vw, 60px);
+}
+
+.page-header h1,
+.blog-header h1,
+.cert-header h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.1;
+}
+
+.page-header p,
+.blog-header p,
+.cert-header p {
+  color: var(--other-color);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* navbar */
+header,
+header.sticky {
+  padding-inline: clamp(16px, 4vw, 10%);
+}
+
+.logo {
+  font-size: clamp(18px, 2vw, 24px);
+}
+
+.logo-box {
+  width: 36px;
+  height: 36px;
+  font-size: 20px;
+}
+
+.navlist a {
+  margin: 0 14px;
+  white-space: nowrap;
+}
+
+.header-btns {
+  gap: 12px;
+}
+
+.search-trigger {
+  padding: 6px 12px;
+  white-space: nowrap;
+}
+
+/* hero */
+.hero {
+  min-height: 100vh;
+  padding-top: 120px;
+}
+
+.hero-wrapper {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(24px, 4vw, 40px);
+}
+
+.hero-text h1 {
+  font-size: clamp(2.4rem, 5vw, 4rem);
+}
+
+.hero-text p {
+  max-width: 60ch;
+}
+
+.img-container {
+  width: min(100%, 360px);
+  aspect-ratio: 360 / 410;
+  height: auto;
+}
+
+.img-outline {
+  top: 24px;
+  left: -24px;
+}
+
+.hero-stats {
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+/* grids/cards */
+.box-grid,
+.services-content,
+.Portfolio-content,
+.skills-container,
+.cert-grid,
+.blog-grid,
+.repo-grid,
+.skills-grid {
+  width: 100%;
+}
+
+.box-grid,
+.services-content,
+.Portfolio-content {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+}
+
+.skills-container {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+}
+
+.cert-grid,
+.blog-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+}
+
+.repo-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+}
+
+/* portfolio */
+.portfolio-container {
+  width: 100%;
+  gap: clamp(24px, 4vw, 40px);
+}
+
+.portfolio-card {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.card-info {
+  padding: clamp(28px, 5vw, 50px);
+}
+
+.card-img {
+  padding: clamp(20px, 4vw, 35px);
+}
+
+.card-img img {
+  height: clamp(240px, 30vw, 330px);
+  object-fit: cover;
+}
+
+/* CV */
+.cv-container {
+  grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
+  gap: clamp(20px, 4vw, 40px);
+}
+
+.cv-content {
+  padding: clamp(24px, 4vw, 50px);
+}
+
+.basics-grid {
+  grid-template-columns: minmax(120px, 180px) minmax(0, 1fr);
+}
+
+.skills-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+/* certifications / blog / repo */
+.cert-card,
+.blog-card,
+.repo-card {
+  min-width: 0;
+}
+
+.cert-img-box {
+  width: 100%;
+  height: 200px;
+  background: #f8f8f8;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+.cert-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 6px;
+}
+
+.blog-card {
+  padding: clamp(24px, 4vw, 38px);
+  min-height: 280px;
+}
+
+.repo-stats {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  padding: 0;
+}
+
+.repo-filters {
+  padding: 24px;
+}
+
+.repo-filters .search-input {
+  min-width: 0;
+}
+
+/* search / modal */
+.search-box,
+.modal-content {
+  width: min(100%, 1000px);
+}
+
+.search-box {
+  max-width: 420px;
+}
+
+.modal-body {
+  padding: clamp(24px, 4vw, 50px);
+}
+
+.modal-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(20px, 4vw, 40px);
+}
+
+.tech-stack-container,
+.tech-stack-img-container {
+  flex-wrap: wrap;
+}
+
+.tech-logo-item {
+  width: 42px;
+  height: 42px;
+}
+
+/* footer */
+.footer {
+  padding-inline: clamp(16px, 4vw, 10%);
+}
+
+/* responsive breakpoints */
 @media (max-width: 1200px) {
-  section,
-  .page-content {
-    padding: 120px 6% 70px;
-  }
-  header,
-  header.sticky {
-    padding: 20px 6%;
-  }
   .hero-wrapper {
     grid-template-columns: 1fr;
     text-align: center;
   }
+
   .hero-text p {
-    margin-left: auto;
-    margin-right: auto;
+    margin-inline: auto;
   }
+
   .hero-btns {
     justify-content: center;
   }
+
   .hero-img {
     order: -1;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
   }
+
   .social-float {
     display: none;
   }
+
   .hero-stats {
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 30px;
   }
+
   .cv-container {
-    padding: 140px 6% 70px;
+    grid-template-columns: 1fr;
+  }
+
+  .cv-sidebar {
+    position: static;
+    top: auto;
   }
 }
 
@@ -1068,457 +1389,205 @@ body.light-mode .search-box ul li a {
   #menu-icon {
     display: block;
   }
+
+  .header-btns {
+    margin-left: auto;
+  }
+
   .navlist {
     position: fixed;
-    top: 80px;
+    top: 76px;
     right: -100%;
-    width: 260px;
-    height: calc(100vh - 80px);
+    width: min(86vw, 320px);
+    height: calc(100vh - 76px);
     background: var(--second-bg-color);
     flex-direction: column;
-    padding: 30px 20px;
-    transition: 0.4s;
+    padding: 26px 20px;
+    transition: 0.35s ease;
+    overflow-y: auto;
+    border-left: 1px solid rgba(255, 51, 51, 0.12);
   }
-  .navlist a {
-    display: block;
-    margin: 10px 0;
-    font-size: 1.05rem;
-  }
+
   .navlist.active {
     right: 0;
   }
-  /* sesuaikan repo stats di mobile */
+
+  .navlist a {
+    display: block;
+    margin: 8px 0;
+    padding: 10px 12px;
+    border-radius: 10px;
+  }
+
+  .navlist a.active,
+  .navlist a:hover {
+    background: rgba(139, 0, 0, 0.12);
+  }
+
   .repo-stats {
-    gap: 20px;
+    grid-template-columns: 1fr;
   }
-  .repo-stats .stat-item h2 {
-    font-size: 2rem;
+
+  .modal-grid {
+    grid-template-columns: 1fr;
   }
 }
 
-.search-trigger {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 5px 12px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 51, 51, 0.1);
-  transition: 0.3s;
-}
-
-.search-trigger:hover {
-  border-color: var(--main-color);
-  background: rgba(139, 0, 0, 0.1);
-}
-
-.search-kb {
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--other-color);
-  background: rgba(255, 255, 255, 0.1);
-  padding: 2px 6px;
-  border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Light mode support */
-body.light-mode .search-trigger {
-  background: #f3f3f3;
-}
-body.light-mode .search-kb {
-  background: #e0e0e0;
-  color: #555;
-}
-
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   :root {
     --h1-font: 3rem;
-    --h2-font: 2.1rem;
+    --h2-font: 2.2rem;
+    --p-font: 0.98rem;
   }
-  .card,
-  .box,
-  .row {
-    padding: 30px 22px;
+
+  header,
+  header.sticky {
+    padding-block: 14px;
   }
+
+  .hero {
+    padding-top: 110px;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+
+  .skills-grid,
+  .basics-grid {
+    grid-template-columns: 1fr;
+  }
+
   .portfolio-card {
     grid-template-columns: 1fr;
   }
-  .card-info {
-    padding: 30px 22px;
+
+  .page-content,
+  .cv-container,
+  section {
+    padding-left: 16px;
+    padding-right: 16px;
   }
-  .card-img {
-    padding: 26px 22px;
+
+  .repo-filters {
+    flex-direction: column;
+    align-items: stretch;
   }
-  .blog-card {
-    padding: 30px 22px;
+
+  .repo-filters .search-input,
+  .repo-filters .filter-select,
+  .repo-filters .reset-btn {
+    width: 100%;
   }
 }
 
-/* Modal Overlay */
+@media (max-width: 640px) {
+  .hero-text h1 {
+    font-size: clamp(2.1rem, 10vw, 3rem);
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .contact {
+    padding: 80px 16px 100px;
+  }
+
+  .social-links-minimal {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .blog-card {
+    min-height: 240px;
+  }
+
+  .cert-card,
+  .repo-card {
+    padding: 22px;
+  }
+
+  .pagination-container {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 18px;
+  }
+
+  .logo-box {
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+  }
+
+  .search-trigger .search-kb {
+    display: none;
+  }
+
+  .hero-btns {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .btn,
+  .view-case-btn,
+  .h-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .modal-body {
+    padding: 20px;
+  }
+}
+
+/* ===== Certification Lightbox ===== */
 .modal-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(10px);
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 2000;
-  padding: 20px;
+  z-index: 1300;
+  opacity: 0;
+  transition: 0.3s ease;
 }
 
-/* Modal Content Box */
-.modal-content {
-  background: var(--second-bg-color);
-  width: 100%;
-  max-width: 1000px;
-  max-height: 90vh;
-  border-radius: 24px;
-  position: relative;
-  border: 1px solid rgba(255, 51, 51, 0.2);
-  overflow-y: auto;
-  animation: modalScale 0.4s ease;
+.modal-overlay.active {
+  display: flex;
+  opacity: 1;
 }
 
-@keyframes modalScale {
-  from { transform: scale(0.9); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+.modal-img-zoom {
+  max-width: min(90vw, 980px);
+  max-height: 80vh;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
 }
 
 .close-modal {
   position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 40px;
-  color: var(--other-color);
-  cursor: pointer;
-  z-index: 10;
-}
-.close-modal:hover { color: var(--main-color); }
-
-.modal-body { padding: 50px; }
-
-.modal-header-info h2 { font-size: 2.5rem; margin: 10px 0 20px; }
-
-.tech-stack-container { display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
-.tech-badge {
-  background: rgba(255, 51, 51, 0.1);
-  border: 1px solid var(--main-color);
-  padding: 5px 15px;
-  border-radius: 8px;
-  font-size: 0.8rem;
-  color: var(--text-color);
-}
-
-.modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-
-.modal-section { margin-bottom: 30px; }
-.modal-section h3 {
-  display: flex; align-items: center; gap: 10px;
-  color: var(--main-color); font-size: 1.2rem; margin-bottom: 15px;
-}
-.modal-section p { color: var(--other-color); line-height: 1.8; }
-
-.img-box-modal {
-  background: #111; border-radius: 15px; padding: 15px; border: 1px dashed #444;
-}
-.img-box-modal img { width: 100%; border-radius: 10px; }
-
-/* Responsive modal */
-@media (max-width: 850px) {
-  .modal-grid { grid-template-columns: 1fr; }
-  .modal-body { padding: 30px; }
-}
-
-/* Container Logo Teknologi di Modal */
-.tech-stack-img-container {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-  margin-top: 15px;
-}
-
-.tech-logo-item {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
-  padding: 8px;
-  border: 1px solid rgba(255, 51, 51, 0.2);
-  transition: 0.3s;
-}
-
-.tech-logo-item:hover {
-  transform: translateY(-5px);
-  border-color: var(--main-color);
-}
-
-.tech-logo-item img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-
-/* Tombol GitHub di Modal */
-.github-modal-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 20px;
-  background: #24292e;
+  top: 24px;
+  right: 28px;
+  font-size: 34px;
   color: #ffffff;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: 0.3s;
-  border: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
+  transition: 0.2s ease;
+  z-index: 1400;
 }
 
-.github-modal-btn:hover {
-  background: var(--main-color);
-  color: white;
-  transform: translateY(-3px);
-}
-
-/* Light‑mode support untuk modal */
-body.light-mode .modal-content {
-  background: #ffffff;
-}
-body.light-mode .img-box-modal {
-  background: #f5f5f5;
-  border-color: #ddd;
-}
-body.light-mode .tech-logo-item {
-  background: #fafafa;
-  border-color: rgba(139, 0, 0, 0.2);
-}
-
-.repo-card a {
-  color: inherit; /* Supaya warna teks tidak berubah jadi biru link */
-  display: block;
-}
-
-.repo-card:hover .repo-title {
+.close-modal:hover {
   color: var(--main-color);
 }
 
-/* --- Estetik Repo Stats Container --- */
-.repo-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  max-width: 900px;
-  margin: 0 auto 50px auto;
-  padding: 20px;
-}
-
-.stat-item {
-  background: rgba(255, 255, 255, 0.02); /* Glassmorphism effect */
-  border: 1px solid rgba(255, 51, 51, 0.1);
-  padding: 30px 20px;
-  border-radius: 20px;
-  text-align: center;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Efek Glow halus di belakang angka */
-.stat-item::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100px;
-  height: 100px;
-  background: var(--main-color);
-  filter: blur(80px);
-  opacity: 0.1;
-  transform: translate(-50%, -50%);
-  z-index: -1;
-}
-
-.stat-item:hover {
-  transform: translateY(-10px);
-  border-color: var(--main-color);
-  background: rgba(139, 0, 0, 0.05);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-}
-
-.stat-item h2 {
-  font-size: 3.5rem; /* Angka lebih besar */
-  font-weight: 800;
-  color: var(--main-color);
-  margin-bottom: 5px;
-  letter-spacing: -1px;
-  text-shadow: 0 0 20px rgba(255, 51, 51, 0.2); /* Glow text */
-}
-
-.stat-item p {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--other-color);
-  font-weight: 600;
-}
-
-/* --- Penyesuaian Light Mode --- */
-body.light-mode .stat-item {
-  background: #ffffff;
-  border-color: rgba(0, 0, 0, 0.05);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
-}
-
-body.light-mode .stat-item h2 {
-  text-shadow: none;
-}
-
-/* Responsif untuk layar kecil */
-@media (max-width: 768px) {
-  .repo-stats {
-    grid-template-columns: 1fr; /* Tumpuk ke bawah di HP */
-    gap: 15px;
-  }
-  .stat-item h2 {
-    font-size: 2.8rem;
-  }
-}
-
-/* --- Pagination Styling --- */
-.pagination-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-top: 50px;
-  margin-bottom: 30px;
-}
-
-.page-btn {
-  width: 45px;
-  height: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 51, 51, 0.1);
-  color: var(--text-color);
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: 0.3s;
-}
-
-.page-btn:hover:not(.active) {
-  border-color: var(--main-color);
-  background: rgba(139, 0, 0, 0.1);
-}
-
-.page-btn.active {
-  background: var(--main-color);
-  color: white;
-  border-color: var(--main-color);
-  box-shadow: 0 5px 15px rgba(255, 51, 51, 0.3);
-}
-
-.page-btn:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
-
-/* Tambahkan ke style filter agar tombol reset lebih rapi */
-#repo-reset-btn {
-  cursor: pointer;
-}
-
-.pdf-icon a {
-  color: var(--main-color); /* Atau sesuai warna PDF biasanya (merah) */
-  font-size: 2.5rem;
-  transition: 0.3s;
-  display: inline-block;
-}
-
-.pdf-icon a:hover {
-  transform: scale(1.1);
-  filter: drop-shadow(0 0 10px rgba(255, 51, 51, 0.4));
-}
-
-/* Perbaikan Grid: Paksa 3 Kolom di Desktop */
-@media (min-width: 1024px) {
-  .cert-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* Perbaikan Gambar Sertifikat agar tidak kepotong */
-.cert-img-box {
-  width: 100%;
-  height: 200px; /* Sesuaikan tinggi agar proporsional */
-  background: #f0f0f0;
-  cursor: zoom-in;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cert-img-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* Ganti dari cover ke contain agar dokumen utuh */
-  padding: 5px; /* Memberi ruang napas agar pinggiran tidak nempel */
-}
-
-/* Lightbox Zoom Style */
-.modal-img-zoom {
-  max-width: 90%;
-  max-height: 85vh;
-  border-radius: 10px;
-  box-shadow: 0 0 30px rgba(0,0,0,0.5);
-  transform: scale(0.9);
-  transition: 0.3s ease;
-}
-
-.modal-overlay.active .modal-img-zoom {
-  transform: scale(1);
-}
-
-.cert-filters {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-bottom: 40px;
-  flex-wrap: wrap;
-}
-
-.filter-tag {
-  padding: 8px 20px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 51, 51, 0.2);
-  color: var(--text-color);
-  border-radius: 30px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: 0.3s;
-}
-
-.filter-tag:hover, .filter-tag.active {
-  background: var(--main-color);
-  color: white;
-  border-color: var(--main-color);
-  box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
-}
-
-/* Memperbaiki tinggi gambar agar seragam */
-.cert-img-box {
-  width: 100%;
-  height: 200px;
-  background: #f8f8f8; /* Bagus untuk background sertifikat putih */
-  border-radius: 12px;
-  overflow: hidden;
-  cursor: zoom-in;
+/* light mode */
+body.light-mode .modal-overlay {
+  background: rgba(0, 0, 0, 0.75);
 }

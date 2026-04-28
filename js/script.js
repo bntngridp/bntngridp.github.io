@@ -3,6 +3,7 @@
  * Final Version: Saturday, April 4, 2026
  */
 
+/* ===== Theme ===== */
 function applyTheme() {
   const savedTheme = localStorage.getItem("theme");
   const icon = document.querySelector("#theme-toggle i");
@@ -17,18 +18,18 @@ function applyTheme() {
 }
 applyTheme();
 
-// Repository State
+/* ===== Repository State ===== */
 let allRepos = [];
 let filteredRepos = [];
 let repoPage = 1;
 const reposPerPage = 9;
 
-// Certification State
+/* ===== Certification State ===== */
 let currentCertFilter = 'all';
 let certPage = 1;
 const certsPerPage = 9;
 
-// Repository function for github
+/* ===== Repository Rendering ===== */
 function renderRepos() {
   const container = document.getElementById("repo-container");
   const paginationContainer = document.getElementById("pagination");
@@ -64,7 +65,7 @@ function renderRepos() {
   if (window.AOS) AOS.refresh();
 }
 
-//
+/* ===== Repository Pagination ===== */
 function renderRepoPagination() {
   const container = document.getElementById("pagination");
   if (!container) return;
@@ -81,7 +82,7 @@ function renderRepoPagination() {
   }
 }
 
-//
+/* ===== Repository Filters ===== */
 function applyRepoFilters() {
   const searchTerm = document.getElementById("repo-search-input")?.value.toLowerCase() || "";
   const selectedLang = document.getElementById("repo-language-filter")?.value || "all";
@@ -98,7 +99,7 @@ function applyRepoFilters() {
   renderRepos();
 }
 
-// Certificate Function
+/* ===== Certifications Data ===== */
 const allCertifications = [
   {
     title: "Cloud Practitioner Essentials (Belajar Dasar AWS Cloud)",
@@ -194,9 +195,9 @@ const allCertifications = [
     img: "../img/certifications/competitions/It Festival 2025.jpg",
     desc: "In recognition of participation in the Software Development Competition at IT Festival 2025, innovation in developing software solutions."
   }
+];
 
-  ];
-
+/* ===== Certifications Rendering ===== */
 function renderCertifications() {
   const container = document.getElementById("cert-container");
   if (!container) return;
@@ -222,6 +223,7 @@ function renderCertifications() {
   if (window.AOS) AOS.refresh();
 }
 
+/* ===== Certifications Pagination ===== */
 function renderCertPagination(totalItems) {
   const container = document.getElementById("cert-pagination");
   if (!container) return;
@@ -238,7 +240,7 @@ function renderCertPagination(totalItems) {
   }
 }
 
-// Filter charts
+/* ===== Certifications Filter ===== */
 function filterCerts(tag) {
   currentCertFilter = tag;
   certPage = 1;
@@ -248,7 +250,7 @@ function filterCerts(tag) {
   renderCertifications();
 }
 
-// Lightbox for Certification Images
+/* ===== Certifications Lightbox ===== */
 function zoomImg(container) {
   const lightbox = document.getElementById('cert-lightbox');
   const zoomedImg = document.getElementById('zoomed-img');
@@ -257,17 +259,14 @@ function zoomImg(container) {
   setTimeout(() => lightbox.classList.add('active'), 10);
   document.body.style.overflow = 'hidden';
 }
-
-// Close Zoom
 function closeZoom() {
   const lightbox = document.getElementById('cert-lightbox');
   lightbox.classList.remove('active');
   setTimeout(() => { lightbox.style.display = 'none'; document.body.style.overflow = 'auto'; }, 300);
 }
 
-// Initialize AOS and Event Listeners
 document.addEventListener("DOMContentLoaded", () => {
-  // Theme Toggle
+  /* ===== Theme Toggle ===== */
   const themeBtn = document.getElementById("theme-toggle");
   if (themeBtn) {
     themeBtn.onclick = () => {
@@ -279,17 +278,38 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  // Sticky Header
+  /* ===== Sticky Header ===== */
   window.onscroll = () => document.getElementById("navbar")?.classList.toggle("sticky", window.scrollY > 80);
 
-  // Mobile Menu
+  /* ===== Mobile Menu ===== */
   const menuIcon = document.querySelector("#menu-icon");
   const navlist = document.querySelector(".navlist");
-  if (menuIcon) {
-    menuIcon.onclick = () => { menuIcon.classList.toggle("bx-x"); navlist.classList.toggle("active"); };
+
+  const closeMobileMenu = () => {
+    if (menuIcon && navlist) {
+      menuIcon.classList.remove("bx-x");
+      navlist.classList.remove("active");
+    }
+  };
+
+  if (menuIcon && navlist) {
+    menuIcon.onclick = () => {
+      menuIcon.classList.toggle("bx-x");
+      navlist.classList.toggle("active");
+    };
+
+    document.querySelectorAll(".navlist a").forEach((link) => {
+      link.addEventListener("click", () => {
+        if (window.innerWidth <= 950) closeMobileMenu();
+      });
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 950) closeMobileMenu();
+    });
   }
 
-  // Search Modal (Cmd+K)
+  /* ===== Search Modal ===== */
   const searchModal = document.getElementById("search-modal");
   const openSearch = () => { searchModal?.classList.add("active"); setTimeout(() => searchModal?.querySelector("input")?.focus(), 100); };
   const closeSearch = () => searchModal?.classList.remove("active");
@@ -299,7 +319,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape") { closeSearch(); closeZoom(); }
   });
 
-  // Load Repositories if on Repo Page
+  /* ===== Repository Init ===== */
   if (document.getElementById("repo-container")) {
     const username = "bntngridp";
     fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`)
@@ -314,8 +334,34 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("repo-search-input")?.addEventListener("input", applyRepoFilters);
     document.getElementById("repo-language-filter")?.addEventListener("change", applyRepoFilters);
     document.getElementById("repo-sort-filter")?.addEventListener("change", applyRepoFilters);
+
+    // Reset button handler (previously unused)
+    document.getElementById("repo-reset-btn")?.addEventListener("click", () => {
+      const searchInput = document.getElementById("repo-search-input");
+      const langSelect = document.getElementById("repo-language-filter");
+      const sortSelect = document.getElementById("repo-sort-filter");
+
+      if (searchInput) searchInput.value = "";
+      if (langSelect) langSelect.value = "all";
+      if (sortSelect) sortSelect.value = "updated";
+
+      applyRepoFilters();
+    });
   }
 
-  // Load Certifications if on Cert Page
-  if (document.getElementById("cert-container")) renderCertifications();
+  /* ===== Certifications Init ===== */
+  if (document.getElementById("cert-container")) {
+    renderCertifications();
+
+    // Close button for lightbox
+    document.querySelector("#cert-lightbox .close-modal")?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      closeZoom();
+    });
+
+    // Prevent image click from closing lightbox
+    document.getElementById("zoomed-img")?.addEventListener("click", (e) => {
+      e.stopPropagation();
+    });
+  }
 });
